@@ -18,11 +18,14 @@
 *                                              包含头文件
 *********************************************************************************************************/
 #include "Main.h"
+#include "cJSON.h"
+#include "String.h"
+#include "procHostCmd.h"
 
 /*********************************************************************************************************
 *                                              宏定义
 *********************************************************************************************************/
-#define LINK false  //汇聚节点设置为true
+
 
 /*********************************************************************************************************
 *                                              内部变量
@@ -75,6 +78,9 @@ static  void  InitHardware(void)
   InitRCC();          //初始化RCC模块
   InitNVIC();         //初始化NVIC模块
   InitUART1(9600);    //初始化UART模块
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+  InitUART2(115200);
+#endif
   InitTimer();        //初始化Timer模块
   InitLED();          //初始化LED模块
   InitSysTick();      //初始化SysTick模块
@@ -142,14 +148,20 @@ static  void  Proc2msTask(void)
 *********************************************************************************************************/
 static  void  Proc1SecTask(void)
 { 
+  char a[50] = {0};
+  int b=0;
+  
   static uint8 s_iCnt = 0;   //计数器
   if(Get1SecFlag()) //判断1s标志状态
   {
     //printf发送到UART1，即到LOAR模块
     //printf("This is the first STM32F103 Project, by Zhangsan\r\n");
+    #if (defined SINK) && (SINK == TRUE)//汇聚节点
+    ProcCloudCmd();    
+    #endif
     s_iCnt++;
     
-    if(s_iCnt >= 2)
+    if(s_iCnt >= 2)//每2秒执行一次
     {
       s_iCnt = 0;
       RouteTimerTasks();

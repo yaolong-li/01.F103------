@@ -57,6 +57,4 @@ extern void ESP8266_SendData(char* buff, int len);
 //接收到下发命令，或者接收到订阅的消息
 extern void mqtt_rx(uint8* topic, uint8* cmd);
 
-extern void debug(uint8 * msg, ...);
-
 #endif

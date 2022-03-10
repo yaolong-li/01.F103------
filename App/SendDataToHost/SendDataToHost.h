@@ -20,6 +20,7 @@
 *                                              包含头文件
 *********************************************************************************************************/
 #include "DataType.h"
+#include "Main.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -37,5 +38,9 @@ void SendAckPack(uint8 addh, uint8 addl,uint8 channel, uint8* ackMsg, uint8 len)
 
 void  SendRouteToNeighbor(uint8* pRouteData, uint8 len);               //广播发送路由信息
 void  SendDateToParent(uint8* pSentData, uint8 len);                   //给父结点发送数据
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+void  SendDateToE20(uint8* pSentData, uint8 len);                   //给Eport-E20发送数据
+#endif
+
 #endif
 

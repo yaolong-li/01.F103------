@@ -334,7 +334,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\App\Main;..\App\LED;..\App\DataType;..\HW\RCC;..\HW\Timer;..\HW\UART1;..\FW\inc;..\ARM\NVIC;..\ARM\System;..\ARM\SysTick;..\HW\ADC;..\HW\DAC;..\App\PackUnpack;..\App\ProcHostCmd;..\App\SendDataToHost;..\HW\RADIO;..\Alg;..\App\mqtt;..\App\cJSON</IncludePath>
+              <IncludePath>..\App\Main;..\App\LED;..\App\DataType;..\HW\RCC;..\HW\Timer;..\HW\UART1;..\FW\inc;..\ARM\NVIC;..\ARM\System;..\ARM\SysTick;..\HW\ADC;..\HW\DAC;..\App\PackUnpack;..\App\ProcHostCmd;..\App\SendDataToHost;..\HW\RADIO;..\Alg;..\App\mqtt;..\App\cJSON;..\HW\UART2</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -476,6 +476,11 @@
               <FileName>RADIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HW\RADIO\RADIO.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HW\UART2\UART2.c</FilePath>
             </File>
           </Files>
         </Group>

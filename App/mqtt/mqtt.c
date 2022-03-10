@@ -25,7 +25,7 @@
 //C库
 #include <string.h>
 #include <stdio.h>
-
+#include <stdarg.h>
 
 uint8 packet_buff[max_packet_len]={0};
 
@@ -365,24 +365,3 @@ void mqtt_rx(uint8* topic, uint8* cmd)
 }
 
 
-//调试信息输出
-void debug(uint8 * msg, ...)
-{
-#if 0
-    uint8 len=0;
-    char info[100] = {0};
-    va_list args;
-
-    if(msg==NULL) return;
-
-    va_start(args, msg);
-    vsprintf(info, (const char*)msg, args);
-    va_end(args);
-
-    len=osal_strlen((char *)info);
-    if(len==0) return;
-
-
-    HalUARTWrite(1,info, len);//串口0发送
-#endif
-}

@@ -17,6 +17,7 @@
 ".\objects\dac.o"
 ".\objects\wave.o"
 ".\objects\radio.o"
+".\objects\uart2.o"
 ".\objects\misc.o"
 ".\objects\stm32f10x_flash.o"
 ".\objects\stm32f10x_gpio.o"

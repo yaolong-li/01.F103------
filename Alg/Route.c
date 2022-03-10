@@ -349,7 +349,7 @@ void InitRoute(void)
   add = 0xffff;//默认目的地址为广播地址
   structRou.addh = add >> 8;
   structRou.addl = add;
-#if (defined LINK && LINK)//汇聚节点
+#if (defined SINK && SINK)//汇聚节点
   structRou.distance = 0x00;  //直接可达
 #else  //普通节点
   structRou.distance = 0xff;  //初始不可达

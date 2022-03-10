@@ -25,12 +25,17 @@
 .\objects\main.o: ..\HW\Timer\Timer.h
 .\objects\main.o: ..\HW\UART1\UART1.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: ..\HW\UART2\UART2.h
 .\objects\main.o: ..\App\LED\LED.h
 .\objects\main.o: ..\HW\RADIO\RADIO.h
 .\objects\main.o: ..\HW\DAC\Wave.h
 .\objects\main.o: ..\App\ProcHostCmd\ProcHostCmd.h
+.\objects\main.o: ..\App\Main\Main.h
 .\objects\main.o: ..\App\PackUnpack\PackUnpack.h
 .\objects\main.o: ..\HW\DAC\DAC.h
 .\objects\main.o: ..\App\SendDataToHost\SendDataToHost.h
 .\objects\main.o: ..\HW\ADC\ADC.h
 .\objects\main.o: ..\Alg\Route.h
+.\objects\main.o: ..\App\cJSON\cJSON.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\String.h

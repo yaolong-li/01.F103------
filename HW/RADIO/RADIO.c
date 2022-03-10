@@ -28,6 +28,7 @@
 #include "Timer.h"
 #include "stm32f10x_conf.h"
 #include "SysTick.h"
+#include "UART1.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -451,7 +452,7 @@ uint8  RadioSendData(uint8 *pBufData, uint8 size)
   {
     if(size > WriteUART1(pBufData, size))
     {
-      printf("RadioSendData中串口缓冲区溢出");
+      debug("RadioSendData中串口缓冲区溢出");
       return 0;
     }
     s_RadioBuf -= size;
@@ -459,11 +460,11 @@ uint8  RadioSendData(uint8 *pBufData, uint8 size)
   }
   else if(!ok_config)
   {
-    printf("切换传输模式失败");
+    debug("切换传输模式失败462");
   }
   else if(s_RadioBuf < size)
   {
-    printf("数据太多lora接收缓冲区溢出");
+    debug("数据太多lora接收缓冲区溢出");
   }
   return 0;
 }

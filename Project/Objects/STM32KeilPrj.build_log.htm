@@ -22,12 +22,39 @@ Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
 D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\STM32KeilPrj.uvprojx
-Project File Date:  02/23/2022
+Project File Date:  03/05/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\STM32KeilPrj.axf" - 0 Error(s), 0 Warning(s).
+compiling ProcHostCmd.c...
+..\App\ProcHostCmd\ProcHostCmd.c(192): warning:  #223-D: function "strlen" declared implicitly
+    WriteUART2(out, strlen(out));
+..\App\ProcHostCmd\ProcHostCmd.c(192): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+    WriteUART2(out, strlen(out));
+..\App\ProcHostCmd\ProcHostCmd.c(194): warning:  #223-D: function "free" declared implicitly
+    free(out);
+..\App\ProcHostCmd\ProcHostCmd.c(217): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+    Cnt = ReadUART2(CmdBuf, 200);
+..\App\ProcHostCmd\ProcHostCmd.c(223): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+    debug(CmdBuf);
+..\App\ProcHostCmd\ProcHostCmd.c(235): warning:  #174-D: expression has no effect
+    method->valuestring;//取??thing.service.property.set
+..\App\ProcHostCmd\ProcHostCmd.c(236): warning:  #174-D: expression has no effect
+    id->valuestring;
+..\App\ProcHostCmd\ProcHostCmd.c(237): warning:  #174-D: expression has no effect
+    ADC_period_S->valueint;
+..\App\ProcHostCmd\ProcHostCmd.c(238): warning:  #174-D: expression has no effect
+    version->valuestring;
+..\App\ProcHostCmd\ProcHostCmd.c(215): warning:  #177-D: variable "str" was declared but never referenced
+    char str[] = "{\"method\":\"thing.service.property.set\",\"id\":\"19244945\",\"params\":{\"ADC_period_S\":3},\"version\":\"1.0.0\"}";
+..\App\ProcHostCmd\ProcHostCmd.c(61): warning:  #177-D: function "OnGenWave" was declared but never referenced
+  static uint8 OnGenWave(uint8* pMsg) 
+..\App\ProcHostCmd\ProcHostCmd.c: 11 warnings, 0 errors
+linking...
+Program Size: Code=22134 RO-data=506 RW-data=144 ZI-data=8648  
+FromELF: creating hex file...
+".\Objects\STM32KeilPrj.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE

@@ -25,7 +25,9 @@
 #include "ADC.h"
 #include "Route.h"
 #include "RADIO.h"
-
+#include "cJSON.h"
+#include "Main.h"
+#include "UART2.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -144,9 +146,97 @@ void ProcHostCmd(uint8 recData)
 *********************************************************************************************************/
 void ProcDatePack(uint8* pRecData)
 {
-  #if (defined LINK && LINK)//汇聚节点
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+  //getPackData   packAsJSON(char*, tempData, humidData, ...)    SendDateToE20
+  //把接收的数据按照AlinkJSON格式格式化数据，通过串口发给eport-e20，eport-e20按照mqtt协议组装后发给阿里云
+  /*
+  AlinkJSON格式如下：
+  {
+  "id": "123",
+  "version": "1.0",
+  "params": { 
+    "F103ship_temperature": {
+      "value": 9,
+      "time": 1524448722000
+    }
+  },
+  "method": "thing.event.property.post"
+  } 
+  */
+  char* out;
+  static uint32 MsgNo=1;
+  char MsgNobuf[10];
+  cJSON* item;
+  cJSON* root = cJSON_CreateObject();
+  cJSON* root2 = cJSON_CreateObject();
+  cJSON* root3 = cJSON_CreateObject();
     
-  #else  //普通节点
-    SendDateToParent(pRecData, DATALEN);  //转发数据分组给父节点
-  #endif
+  sprintf(MsgNobuf, "%d", MsgNo);
+  item = cJSON_CreateString(MsgNobuf);
+    
+  MsgNo++;
+  
+  cJSON_AddItemToObject(root, "id", item);
+  cJSON_AddStringToObject(root, "version", "1.0");
+    
+  cJSON_AddNumberToObject(root3, "value", 9);
+  //cJSON_AddNumberToObject(root3, "time", 1524448722000);//时间戳，可选
+    
+  cJSON_AddItemToObject(root2, "F103ship_temperature", root3);
+  
+  cJSON_AddItemToObject(root, "params", root2);
+  cJSON_AddStringToObject(root, "method", "thing.event.property.post");
+  
+  out = cJSON_Print(root);
+  //printf("%s", out);
+  WriteUART2(out, strlen(out));
+  cJSON_Delete (root);
+  free(out);
+#else  //普通节点
+  SendDateToParent(pRecData, DATALEN);  //转发数据分组给父节点
+#endif
 }
+
+/*********************************************************************************************************
+* 函数名称：ProcCloudCmd
+* 函数功能：处理云端下发的命令
+* 输入参数：void
+* 输出参数：void
+* 返 回 值：void
+* 创建日期：2022年03月10日
+* 注    意：
+*********************************************************************************************************/
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+void ProcCloudCmd(void)
+{
+  char CmdBuf[200]={0};
+  uint8 Cnt;
+  cJSON *root, *method, *id, *params, *ADC_period_S, *version;
+  char str[] = "{\"method\":\"thing.service.property.set\",\"id\":\"19244945\",\"params\":{\"ADC_period_S\":3},\"version\":\"1.0.0\"}";
+
+  Cnt = ReadUART2(CmdBuf, 200);
+  
+  if(Cnt < 101)
+  {
+    return;
+  }
+  debug(CmdBuf);
+  
+/*接收成功则反序列化以下JSON
+{"method":"thing.service.property.set","id":"19244945","params":{"ADC_period_S":3},"version":"1.0.0"}
+*/
+   root = cJSON_Parse(CmdBuf);
+   method = cJSON_GetObjectItem(root, "method");//没有此对象则返回空
+   id = cJSON_GetObjectItem(root, "id");
+   params = cJSON_GetObjectItem(root, "params");
+   ADC_period_S = cJSON_GetObjectItem(params, "ADC_period_S");
+   version = cJSON_GetObjectItem(root, "version");
+  
+  method->valuestring;//取出thing.service.property.set
+  id->valuestring;
+  ADC_period_S->valueint;
+  version->valuestring;
+  
+  cJSON_Delete(root);//最后释放内存
+}
+#endif

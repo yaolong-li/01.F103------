@@ -38,5 +38,5 @@
 void  InitUART1(uint32 bound);             //初始化UART1模块
 uint8 WriteUART1(uint8 *pBuf, uint8 len);  //写串口，返回已写入数据的个数
 uint8 ReadUART1(uint8 *pBuf, uint8 len);   //读串口，返回读到数据的个数
-
+extern void debug(uint8 * msg, ...);
 #endif
