@@ -1,5 +1,5 @@
 Dependencies for Project 'STM32KeilPrj', Target 'Target 1': (DO NOT MODIFY !)
-F (..\App\Main\Main.c)(0x6229D6D2)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\App\Main\Main.c)(0x622ADC59)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\App\Main\Main.h)(0x6226CF8C)
 I (..\ARM\System\stm32f10x_conf.h)(0x5CE3EAF2)
 I (..\FW\inc\stm32f10x_adc.h)(0x5A6556B6)
@@ -33,7 +33,7 @@ I (..\App\ProcHostCmd\ProcHostCmd.h)(0x6229C54F)
 I (..\App\PackUnpack\PackUnpack.h)(0x6210E1F6)
 I (..\HW\DAC\DAC.h)(0x6210E21C)
 I (..\App\SendDataToHost\SendDataToHost.h)(0x62298E71)
-I (..\HW\ADC\ADC.h)(0x6210E1F6)
+I (..\HW\ADC\ADC.h)(0x622AD984)
 I (..\Alg\Route.h)(0x6210E1F6)
 I (..\App\cJSON\cJSON.h)(0x61F13D92)
 I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x56FE42DE)
@@ -92,10 +92,10 @@ I (..\HW\RADIO\RADIO.h)(0x6210E21B)
 I (..\HW\DAC\Wave.h)(0x6210E1F6)
 I (..\App\ProcHostCmd\ProcHostCmd.h)(0x6229C54F)
 I (..\HW\DAC\DAC.h)(0x6210E21C)
-I (..\HW\ADC\ADC.h)(0x6210E1F6)
+I (..\HW\ADC\ADC.h)(0x622AD984)
 I (..\Alg\Route.h)(0x6210E1F6)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE42DE)
-F (..\App\ProcHostCmd\ProcHostCmd.c)(0x622A0339)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\prochostcmd.o --omf_browse .\objects\prochostcmd.crf --depend .\objects\prochostcmd.d)
+F (..\App\ProcHostCmd\ProcHostCmd.c)(0x622AC154)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\prochostcmd.o --omf_browse .\objects\prochostcmd.crf --depend .\objects\prochostcmd.d)
 I (..\App\ProcHostCmd\ProcHostCmd.h)(0x6229C54F)
 I (..\App\DataType\DataType.h)(0x62163634)
 I (..\App\Main\Main.h)(0x6226CF8C)
@@ -129,10 +129,11 @@ I (..\HW\DAC\Wave.h)(0x6210E1F6)
 I (..\App\PackUnpack\PackUnpack.h)(0x6210E1F6)
 I (..\HW\DAC\DAC.h)(0x6210E21C)
 I (..\App\SendDataToHost\SendDataToHost.h)(0x62298E71)
-I (..\HW\ADC\ADC.h)(0x6210E1F6)
+I (..\HW\ADC\ADC.h)(0x622AD984)
 I (..\Alg\Route.h)(0x6210E1F6)
 I (..\App\cJSON\cJSON.h)(0x61F13D92)
 I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x56FE42DE)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE42DE)
 F (..\App\SendDataToHost\SendDataToHost.c)(0x6229C398)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\senddatatohost.o --omf_browse .\objects\senddatatohost.crf --depend .\objects\senddatatohost.d)
 I (..\App\SendDataToHost\SendDataToHost.h)(0x62298E71)
 I (..\App\DataType\DataType.h)(0x62163634)
@@ -167,7 +168,7 @@ I (..\HW\DAC\Wave.h)(0x6210E1F6)
 I (..\App\ProcHostCmd\ProcHostCmd.h)(0x6229C54F)
 I (..\App\PackUnpack\PackUnpack.h)(0x6210E1F6)
 I (..\HW\DAC\DAC.h)(0x6210E21C)
-I (..\HW\ADC\ADC.h)(0x6210E1F6)
+I (..\HW\ADC\ADC.h)(0x622AD984)
 I (..\Alg\Route.h)(0x6210E1F6)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE42DE)
 F (..\App\mqtt\mqtt.c)(0x622A0000)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\mqtt.o --omf_browse .\objects\mqtt.crf --depend .\objects\mqtt.d)
@@ -229,7 +230,7 @@ I (..\HW\DAC\Wave.h)(0x6210E1F6)
 I (..\App\ProcHostCmd\ProcHostCmd.h)(0x6229C54F)
 I (..\App\PackUnpack\PackUnpack.h)(0x6210E1F6)
 I (..\HW\DAC\DAC.h)(0x6210E21C)
-I (..\HW\ADC\ADC.h)(0x6210E1F6)
+I (..\HW\ADC\ADC.h)(0x622AD984)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE42DE)
 F (..\HW\RCC\RCC.c)(0x6210EAFF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\rcc.o --omf_browse .\objects\rcc.crf --depend .\objects\rcc.d)
 I (..\HW\RCC\RCC.h)(0x5CE35B2E)
@@ -299,8 +300,8 @@ I (..\HW\UART1\Queue.h)(0x6210E1F6)
 I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x56FE42E0)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE42DE)
 I (..\HW\UART2\UART2.h)(0x62234D18)
-F (..\HW\ADC\ADC.c)(0x6210EAFF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
-I (..\HW\ADC\ADC.h)(0x6210E1F6)
+F (..\HW\ADC\ADC.c)(0x622ADB95)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
+I (..\HW\ADC\ADC.h)(0x622AD984)
 I (..\App\DataType\DataType.h)(0x62163634)
 I (..\ARM\System\stm32f10x_conf.h)(0x5CE3EAF2)
 I (..\FW\inc\stm32f10x_adc.h)(0x5A6556B6)
@@ -320,7 +321,7 @@ I (..\FW\inc\stm32f10x_tim.h)(0x5A6556B6)
 I (..\FW\inc\stm32f10x_usart.h)(0x6210E21C)
 I (..\FW\inc\misc.h)(0x5A6556B6)
 I (..\HW\ADC\U16Queue.h)(0x6210E1F6)
-F (..\HW\ADC\U16Queue.c)(0x6210EAFF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\u16queue.o --omf_browse .\objects\u16queue.crf --depend .\objects\u16queue.d)
+F (..\HW\ADC\U16Queue.c)(0x622AD8C2)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\u16queue.o --omf_browse .\objects\u16queue.crf --depend .\objects\u16queue.d)
 I (..\HW\ADC\U16Queue.h)(0x6210E1F6)
 I (..\App\DataType\DataType.h)(0x62163634)
 F (..\HW\DAC\DAC.c)(0x6210EAFF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\App\Main -I ..\App\LED -I ..\App\DataType -I ..\HW\RCC -I ..\HW\Timer -I ..\HW\UART1 -I ..\FW\inc -I ..\ARM\NVIC -I ..\ARM\System -I ..\ARM\SysTick -I ..\HW\ADC -I ..\HW\DAC -I ..\App\PackUnpack -I ..\App\ProcHostCmd -I ..\App\SendDataToHost -I ..\HW\RADIO -I ..\Alg -I ..\App\mqtt -I ..\App\cJSON -I ..\HW\UART2-I D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="520" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o .\objects\dac.o --omf_browse .\objects\dac.crf --depend .\objects\dac.d)

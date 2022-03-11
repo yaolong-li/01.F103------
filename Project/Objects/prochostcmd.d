@@ -39,3 +39,4 @@
 .\objects\prochostcmd.o: ..\Alg\Route.h
 .\objects\prochostcmd.o: ..\App\cJSON\cJSON.h
 .\objects\prochostcmd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\prochostcmd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

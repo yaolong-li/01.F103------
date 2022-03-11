@@ -176,18 +176,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>229</LineNumber>
+          <LineNumber>126</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134227448</Address>
+          <Address>134227408</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\Keil_v5\STM32KeilTest\01.F103鍩哄噯宸ョ▼瀹為獙\App\ProcHostCmd\ProcHostCmd.c</Filename>
+          <Filename>D:\Keil_v5\STM32KeilTest\01.F103鍩哄噯宸ョ▼瀹為獙\App\Main\Main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\STM32KeilPrj\../App/ProcHostCmd/ProcHostCmd.c\229</Expression>
+          <Expression>\\STM32KeilPrj\../App/Main/Main.c\126</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -216,6 +216,26 @@
           <WinNumber>1</WinNumber>
           <ItemText>s_structRouteTable</ItemText>
         </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>adcData</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>waveData</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ADC1-&gt;DR</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>s_arrADC1Data</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
@@ -224,14 +244,6 @@
           <ItemText>pAdd[2]</ItemText>
         </Ww>
       </WatchWindow2>
-      <MemoryWindow1>
-        <Mm>
-          <WinNumber>1</WinNumber>
-          <SubType>0</SubType>
-          <ItemText>0x20002194</ItemText>
-          <AccSizeX>0</AccSizeX>
-        </Mm>
-      </MemoryWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>

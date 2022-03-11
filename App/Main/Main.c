@@ -102,7 +102,7 @@ static  void  Proc2msTask(void)
 {  
   uint8  uart1RecData; //串口数据
   uint16 adcData;      //队列数据
-  uint8  waveData;     //波形数据
+  float waveData;     //波形数据
 
   static uint16 s_iCnt4 = 0;   //计数器
   static uint8 s_iPointCnt = 0;        //温度数据包的点计数器
@@ -120,7 +120,9 @@ static  void  Proc2msTask(void)
     {
       if(ReadADCBuf(&adcData))  //从缓存队列中取出1个数据到adcData
       {
-        waveData = (1.42 - adcData * 3.3 / 4096)*1000/4.35 + 25;  //计算获取温度的值，12位ADC，2^12=4095，参考电压3.3V
+        ClearADCBuf();
+        waveData = (float)adcData*(3.3 / 4095.0);
+        waveData = (1.43 - waveData)/0.0043 + 25.0;  //计算获取温度的值，12位ADC，2^12=4095，参考电压3.3V
         s_arrWaveData[s_iPointCnt] = waveData;  //存放到数组
         s_iPointCnt++;  //温度数据包的点计数器加1操作
 

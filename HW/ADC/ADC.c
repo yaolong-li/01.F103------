@@ -33,7 +33,7 @@
 *********************************************************************************************************/
 static uint16 s_arrADC1Data;   //存放ADC转换结果数据
 static StructU16CirQue  s_structADCCirQue;            //ADC循环队列
-static uint16              s_arrADCBuf[ADC1_BUF_SIZE];   //ADC循环队列的缓冲区
+static uint16 s_arrADCBuf[ADC1_BUF_SIZE];   //ADC循环队列的缓冲区
 
 /*********************************************************************************************************
 *                                              内部函数声明
@@ -64,6 +64,8 @@ static void ConfigADC1(void)
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1  , ENABLE);  //使能ADC1的时钟
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA , ENABLE);  //使能GPIOA的时钟
  
+  ADC_DeInit(ADC1);
+  
   //配置ADC1的GPIO
   GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_1;    //设置引脚
   GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AIN; //设置输入类型
@@ -71,7 +73,7 @@ static void ConfigADC1(void)
 
   //配置ADC1
   ADC_InitStructure.ADC_Mode               = ADC_Mode_Independent;  //设置为独立模式
-  ADC_InitStructure.ADC_ScanConvMode       = ENABLE;                //使能扫描模式
+  ADC_InitStructure.ADC_ScanConvMode       = DISABLE;               //禁止扫描模式
   ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;               //禁止连续转换模式
   ADC_InitStructure.ADC_ExternalTrigConv   = ADC_ExternalTrigConv_T3_TRGO;  //使用TIM3触发
   ADC_InitStructure.ADC_DataAlign          = ADC_DataAlign_Right;   //设置为右对齐
@@ -113,7 +115,7 @@ static void ConfigDMA1Ch1(void)
   DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralSRC;           //设置为外设到存储器模式
   DMA_InitStructure.DMA_BufferSize         = 1;                               //设置要传输的数据项数目
   DMA_InitStructure.DMA_PeripheralInc      = DMA_PeripheralInc_Disable;       //设置外设为非递增模式
-  DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable;            //设置存储器为递增模式
+  DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Disable;           //设置存储器为非递增模式
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord; //设置外设数据长度为半字
   DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_HalfWord;     //设置存储器数据长度为半字
   DMA_InitStructure.DMA_Mode               = DMA_Mode_Circular;               //设置为循环模式
@@ -236,4 +238,17 @@ uint8 ReadADCBuf(uint16* p)
   ok = DeU16Queue(&s_structADCCirQue, p, 1); //出队
 
   return ok;  //返回读取成功标志位的值
+}
+/*********************************************************************************************************
+* 函数名称：ClearADCBuf
+* 函数功能：清除ADC缓冲区的数据
+* 输入参数：void
+* 输出参数：void
+* 返 回 值：void
+* 创建日期：2022年3月11日13:07:26
+* 注    意：
+**********************************************************************************************************/
+void ClearADCBuf(void)
+{
+  ClearU16Queue(&s_structADCCirQue);
 }

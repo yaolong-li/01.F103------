@@ -37,5 +37,5 @@ void InitADC(void);  //初始化ADC模块
 
 uint8   WriteADCBuf(uint16 d); //向ADC缓冲区写入数据
 uint8   ReadADCBuf(uint16 *p); //从ADC缓冲区读取数据
-
+void    ClearADCBuf(void);     //清除ADC缓冲区的数据
 #endif

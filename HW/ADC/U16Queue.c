@@ -175,3 +175,6 @@ int16 DeU16Queue(StructU16CirQue* pQue, uint16* pOutput, int16 len)
 
   return rLen;  //如果返回值rLen为0，表示队列中没有元素
 }
+
+
+

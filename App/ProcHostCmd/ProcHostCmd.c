@@ -28,6 +28,7 @@
 #include "cJSON.h"
 #include "Main.h"
 #include "UART2.h"
+#include <string.h>
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -40,7 +41,9 @@
 /*********************************************************************************************************
 *                                              内部变量
 *********************************************************************************************************/
-
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+static uint8 IdBuff[10] = {0};//存储上次命令ID，防止重复
+#endif
 /*********************************************************************************************************
 *                                              内部函数声明
 *********************************************************************************************************/
@@ -225,18 +228,35 @@ void ProcCloudCmd(void)
 /*接收成功则反序列化以下JSON
 {"method":"thing.service.property.set","id":"19244945","params":{"ADC_period_S":3},"version":"1.0.0"}
 */
-   root = cJSON_Parse(CmdBuf);
-   method = cJSON_GetObjectItem(root, "method");//没有此对象则返回空
-   id = cJSON_GetObjectItem(root, "id");
-   params = cJSON_GetObjectItem(root, "params");
-   ADC_period_S = cJSON_GetObjectItem(params, "ADC_period_S");
-   version = cJSON_GetObjectItem(root, "version");
+  root = cJSON_Parse(CmdBuf);
+  method = cJSON_GetObjectItem(root, "method");//没有此对象则返回空
+  id = cJSON_GetObjectItem(root, "id");
+  version = cJSON_GetObjectItem(root, "version");
+  params = cJSON_GetObjectItem(root, "params");
+  ADC_period_S = cJSON_GetObjectItem(params, "ADC_period_S");
+  if(root == NULL || method == NULL || id == NULL  || version == NULL)
+  {
+   return;
+  }
+  if(strcmp(IdBuff, id->valuestring) == 0 || strcmp("1.0.0", version->valuestring) == 0)//同一条命令或版本不对
+  {
+    return;
+  }
+  else
+  {
+    memset(IdBuff, '\0', 10);
+    strcpy(IdBuff, id->valuestring);
+  }
   
-  method->valuestring;//取出thing.service.property.set
-  id->valuestring;
-  ADC_period_S->valueint;
-  version->valuestring;
-  
+  if(0 == strcmp("thing.service.property.set", method->valuestring))//与thing.service.property.set相同
+  {
+    if (ADC_period_S)
+    {
+      ADC_period_S->valueint;
+    }
+  }
+
+
   cJSON_Delete(root);//最后释放内存
 }
 #endif

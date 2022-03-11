@@ -26,42 +26,290 @@ Project File Date:  03/05/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling Main.c...
+..\App\Main\Main.c(109): warning:  #550-D: variable "s_arrWaveData" was set but never used
+    static uint8 s_arrWaveData[5] = {0}; //??始化????
+..\App\Main\Main.c(162): warning:  #223-D: function "ProcCloudCmd" declared implicitly
+      ProcCloudCmd();    
+..\App\Main\Main.c(153): warning:  #177-D: variable "a" was declared but never referenced
+    char a[50] = {0};
+..\App\Main\Main.c(154): warning:  #177-D: variable "b" was declared but never referenced
+    int b=0;
+..\App\Main\Main.c: 4 warnings, 0 errors
+compiling LED.c...
+compiling PackUnpack.c...
+..\App\PackUnpack\PackUnpack.c(67): warning:  #177-D: function "PackWithCheckSum" was declared but never referenced
+  static void PackWithCheckSum(uint8* pPack)
+..\App\PackUnpack\PackUnpack.c: 1 warning, 0 errors
 compiling ProcHostCmd.c...
-..\App\ProcHostCmd\ProcHostCmd.c(192): warning:  #223-D: function "strlen" declared implicitly
+..\App\ProcHostCmd\ProcHostCmd.c(195): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
     WriteUART2(out, strlen(out));
-..\App\ProcHostCmd\ProcHostCmd.c(192): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
-    WriteUART2(out, strlen(out));
-..\App\ProcHostCmd\ProcHostCmd.c(194): warning:  #223-D: function "free" declared implicitly
+..\App\ProcHostCmd\ProcHostCmd.c(197): warning:  #223-D: function "free" declared implicitly
     free(out);
-..\App\ProcHostCmd\ProcHostCmd.c(217): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+..\App\ProcHostCmd\ProcHostCmd.c(220): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
     Cnt = ReadUART2(CmdBuf, 200);
-..\App\ProcHostCmd\ProcHostCmd.c(223): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+..\App\ProcHostCmd\ProcHostCmd.c(226): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
     debug(CmdBuf);
-..\App\ProcHostCmd\ProcHostCmd.c(235): warning:  #174-D: expression has no effect
-    method->valuestring;//取??thing.service.property.set
-..\App\ProcHostCmd\ProcHostCmd.c(236): warning:  #174-D: expression has no effect
-    id->valuestring;
-..\App\ProcHostCmd\ProcHostCmd.c(237): warning:  #174-D: expression has no effect
-    ADC_period_S->valueint;
-..\App\ProcHostCmd\ProcHostCmd.c(238): warning:  #174-D: expression has no effect
-    version->valuestring;
-..\App\ProcHostCmd\ProcHostCmd.c(215): warning:  #177-D: variable "str" was declared but never referenced
+..\App\ProcHostCmd\ProcHostCmd.c(241): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "const char *"
+    if(strcmp(IdBuff, id->valuestring) == 0 || strcmp("1.0.0", version->valuestring) == 0)//同一?????罨虬姹?不??
+..\App\ProcHostCmd\ProcHostCmd.c(248): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *restrict"
+      strcpy(IdBuff, id->valuestring);
+..\App\ProcHostCmd\ProcHostCmd.c(255): warning:  #174-D: expression has no effect
+        ADC_period_S->valueint;
+..\App\ProcHostCmd\ProcHostCmd.c(218): warning:  #177-D: variable "str" was declared but never referenced
     char str[] = "{\"method\":\"thing.service.property.set\",\"id\":\"19244945\",\"params\":{\"ADC_period_S\":3},\"version\":\"1.0.0\"}";
-..\App\ProcHostCmd\ProcHostCmd.c(61): warning:  #177-D: function "OnGenWave" was declared but never referenced
+..\App\ProcHostCmd\ProcHostCmd.c(64): warning:  #177-D: function "OnGenWave" was declared but never referenced
   static uint8 OnGenWave(uint8* pMsg) 
-..\App\ProcHostCmd\ProcHostCmd.c: 11 warnings, 0 errors
+..\App\ProcHostCmd\ProcHostCmd.c: 9 warnings, 0 errors
+compiling SendDataToHost.c...
+..\App\SendDataToHost\SendDataToHost.c(163): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\App\SendDataToHost\SendDataToHost.c: 1 warning, 0 errors
+compiling mqtt.c...
+..\App\mqtt\mqtt.c(55): warning:  #167-D: argument of type "unsigned char *" is incompatible with parameter of type "char *restrict"
+          sprintf(mqttUsername, "%s&%s", 
+eviceName, 
+roductKey);
+..\App\mqtt\mqtt.c(56): warning:  #223-D: function "debug" declared implicitly
+          debug( "OneNet_DevLink\r\nmqttUsername:%s, mqttPassword:%s,mqttClientId:%s\r\n", mqttUsername, mqttPassword, mqttClientId);
+..\App\mqtt\mqtt.c(58): warning:  #167-D: argument of type "unsigned char *" is incompatible with parameter of type "const int8 *"
+        if(MQTT_PacketConnect(mqttUsername, 
+qttPassword, 
+qttClientId, 256, 0, MQTT_QOS_LEVEL0, 
+ULL, 
+ULL, 0, &mqttPacket) == 0)
+..\App\mqtt\mqtt.c(60): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                ESP8266_SendData(mqttPacket._data, mqttPacket._len);                    //?洗?平台
+..\App\mqtt\mqtt.c(51): warning:  #177-D: variable "dataPtr" was declared but never referenced
+        unsigned char *dataPtr;
+..\App\mqtt\mqtt.c(104): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8 *"
+                        result = MQTT_UnPacketCmd(cmd, cmdid_topic, req_payload, &req_len);     //?獬?topic????息??
+..\App\mqtt\mqtt.c(104): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8 *"
+                        result = MQTT_UnPacketCmd(cmd, cmdid_topic, req_payload, &req_len);     //?獬?topic????息??
+..\App\mqtt\mqtt.c(107): warning:  #223-D: function "debug" declared implicitly
+                                debug("cmdid: %s, req: %s, req_len: %d\r\n", cmdid_topic, req_payload, req_len);
+..\App\mqtt\mqtt.c(108): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+                                mqtt_rx(cmdid_topic, req_payload);
+..\App\mqtt\mqtt.c(108): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+                                mqtt_rx(cmdid_topic, req_payload);
+..\App\mqtt\mqtt.c(111): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const int8 *"
+                                if(MQTT_PacketCmdResp(cmdid_topic, req_payload, &mqttPacket) == 0)      //???罨馗??榘?
+..\App\mqtt\mqtt.c(111): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const int8 *"
+                                if(MQTT_PacketCmdResp(cmdid_topic, req_payload, &mqttPacket) == 0)      //???罨馗??榘?
+..\App\mqtt\mqtt.c(115): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                                        ESP8266_SendData(mqttPacket._data, mqttPacket._len);                    //?馗?????
+..\App\mqtt\mqtt.c(126): warning:  #223-D: function "debug" declared implicitly
+                                debug("Tips:    MQTT Publish Send OK\r\n");
+..\App\mqtt\mqtt.c(138): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8 *"
+              if(MQTT_UnPacketPublish(cmd, cmdid_topic, &topic_len, req_payload, &req_len, &qos, &pkt_id) == 0)
+..\App\mqtt\mqtt.c(138): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8 *"
+              if(MQTT_UnPacketPublish(cmd, cmdid_topic, &topic_len, req_payload, &req_len, &qos, &pkt_id) == 0)
+..\App\mqtt\mqtt.c(141): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+                  mqtt_rx(cmdid_topic, req_payload);
+..\App\mqtt\mqtt.c(141): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+                  mqtt_rx(cmdid_topic, req_payload);
+..\App\mqtt\mqtt.c(153): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                              ESP8266_SendData(mqttPacket._data, mqttPacket._len);
+..\App\mqtt\mqtt.c(163): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                              ESP8266_SendData(mqttPacket._data, mqttPacket._len);
+..\App\mqtt\mqtt.c(183): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                      ESP8266_SendData(mqttPacket._data, mqttPacket._len);
+..\App\mqtt\mqtt.c(197): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                      ESP8266_SendData(mqttPacket._data, mqttPacket._len);
+..\App\mqtt\mqtt.c(252): warning:  #223-D: function "debug" declared implicitly
+        debug("send heart\r\n");
+..\App\mqtt\mqtt.c(254): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+      ESP8266_SendData(mqttPacket._data, mqttPacket._len);
+..\App\mqtt\mqtt.c(272): warning:  #223-D: function "debug" declared implicitly
+        debug("publish topic: %s, msg: %s\r\n", topic, msg);
+..\App\mqtt\mqtt.c(274): warning:  #167-D: argument of type "const char *" is incompatible with parameter of type "const int8 *"
+        if(MQTT_PacketPublish(
+QTT_PUBLISH_ID, topic, msg, strlen(msg), MQTT_QOS_LEVEL2, 0, 1, &mqttPacket) == 0)
+..\App\mqtt\mqtt.c(274): warning:  #167-D: argument of type "const char *" is incompatible with parameter of type "const int8 *"
+        if(MQTT_PacketPublish(
+QTT_PUBLISH_ID, topic, msg, strlen(msg), MQTT_QOS_LEVEL2, 0, 1, &mqttPacket) == 0)
+..\App\mqtt\mqtt.c(276): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                ESP8266_SendData(mqttPacket._data, mqttPacket._len);//?洗?平台
+..\App\mqtt\mqtt.c(309): warning:  #223-D: function "debug" declared implicitly
+                debug("subscribe topic: %s\r\n", topic[i]);
+..\App\mqtt\mqtt.c(314): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "char *"
+                ESP8266_SendData(mqttPacket._data, mqttPacket._len);//?洗?平台
+..\App\mqtt\mqtt.c: 30 warnings, 0 errors
+compiling MqttKit.c...
+..\App\mqtt\MqttKit.c(173): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "const char *"
+                if(strstr((int8 *)msgPtr + 2, 
+MD_TOPIC_PREFIX) != NULL)       //?绻????????路?
+..\App\mqtt\MqttKit.c(214): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+        
+nt16 len = 0, devid_len = strlen(devid);
+..\App\mqtt\MqttKit.c(231): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                will_topic_len = strlen(will_topic);
+..\App\mqtt\MqttKit.c(232): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                total_len += 4 + will_topic_len + strlen(will_msg);
+..\App\mqtt\MqttKit.c(267): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+        total_len += strlen(user) + strlen(password) + 4;
+..\App\mqtt\MqttKit.c(267): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+        total_len += strlen(user) + strlen(password) + 4;
+..\App\mqtt\MqttKit.c(317): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+        strncat((int8 *)mqttPacket->_data + mqttPacket->_len, devid, devid_len);
+..\App\mqtt\MqttKit.c(317): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+        strncat((int8 *)mqttPacket->_data + mqttPacket->_len, devid, devid_len);
+..\App\mqtt\MqttKit.c(328): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                mLen = strlen(will_topic);
+..\App\mqtt\MqttKit.c(331): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, will_topic, mLen);
+..\App\mqtt\MqttKit.c(331): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, will_topic, mLen);
+..\App\mqtt\MqttKit.c(334): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                mLen = strlen(will_msg);
+..\App\mqtt\MqttKit.c(337): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, will_msg, mLen);
+..\App\mqtt\MqttKit.c(337): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, will_msg, mLen);
+..\App\mqtt\MqttKit.c(344): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                unsigned short user_len = strlen(user);
+..\App\mqtt\MqttKit.c(348): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, user, user_len);
+..\App\mqtt\MqttKit.c(348): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, user, user_len);
+..\App\mqtt\MqttKit.c(355): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                unsigned short psw_len = strlen(password);
+..\App\mqtt\MqttKit.c(359): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, password, psw_len);
+..\App\mqtt\MqttKit.c(359): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, password, psw_len);
+..\App\mqtt\MqttKit.c(469): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "const char *"
+        int8 *dataPtr = strchr((int8 *)rev_data + 6, '/');      //??6????头??息
+..\App\mqtt\MqttKit.c(469): warning:  #144-D: a value of type "char *" cannot be used to initialize an entity of type "int8 *"
+        int8 *dataPtr = strchr((int8 *)rev_data + 6, '/');      //??6????头??息
+..\App\mqtt\MqttKit.c(482): warning:  #223-D: function "debug" declared implicitly
+      debug("UnPacket mem 11\r\n");
+..\App\mqtt\MqttKit.c(492): warning:  #223-D: function "debug" declared implicitly
+                debug("UnPacket mem 22\r\n");
+..\App\mqtt\MqttKit.c(518): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+        
+int16 cmdid_len = strlen(cmdid);
+..\App\mqtt\MqttKit.c(522): warning:  #223-D: function "sprintf" declared implicitly
+    sprintf(payload, "$crsp/%s", cmdid);
+..\App\mqtt\MqttKit.c(524): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+        if(MQTT_PacketPublish(
+QTT_PUBLISH_ID, payload, req, strlen(req), MQTT_QOS_LEVEL0, 0, 1, mqttPacket) == 0)
+..\App\mqtt\MqttKit.c(524): warning:  #167-D: argument of type "uint8 *" is incompatible with parameter of type "const int8 *"
+        if(MQTT_PacketPublish(
+QTT_PUBLISH_ID, payload, req, strlen(req), MQTT_QOS_LEVEL0, 0, 1, mqttPacket) == 0)
+..\App\mqtt\MqttKit.c(564): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                topic_len += strlen(topics[i]);
+..\App\mqtt\MqttKit.c(599): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                topic_len = strlen(topics[i]);
+..\App\mqtt\MqttKit.c(603): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, topics[i], topic_len);
+..\App\mqtt\MqttKit.c(603): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, topics[i], topic_len);
+..\App\mqtt\MqttKit.c(687): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                topic_len += strlen(topics[i]);
+..\App\mqtt\MqttKit.c(722): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *"
+                topic_len = strlen(topics[i]);
+..\App\mqtt\MqttKit.c(726): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, topics[i], topic_len);
+..\App\mqtt\MqttKit.c(726): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, topics[i], topic_len);
+..\App\mqtt\MqttKit.c(857): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+        strncat((int8 *)mqttPacket->_data + mqttPacket->_len, topic, topic_len);
+..\App\mqtt\MqttKit.c(857): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+        strncat((int8 *)mqttPacket->_data + mqttPacket->_len, topic, topic_len);
+..\App\mqtt\MqttKit.c(868): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, payload, payload_len);
+..\App\mqtt\MqttKit.c(868): warning:  #167-D: argument of type "const int8 *" is incompatible with parameter of type "const char *restrict"
+                strncat((int8 *)mqttPacket->_data + mqttPacket->_len, payload, payload_len);
+..\App\mqtt\MqttKit.c(909): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "const char *"
+        if(strstr((int8 *)msgPtr + 2, 
+MD_TOPIC_PREFIX) != NULL)       //?绻????????路?
+..\App\mqtt\MqttKit.c(921): warning:  #223-D: function "debug" declared implicitly
+          debug("UnPacketPublish 11.\r\n");
+..\App\mqtt\MqttKit.c(930): warning:  #223-D: function "debug" declared implicitly
+          debug("UnPacketPublish 22.\r\n");
+..\App\mqtt\MqttKit.c(952): warning:  #223-D: function "debug" declared implicitly
+          debug("UnPacketPublish 33.\r\n");
+..\App\mqtt\MqttKit.c(962): warning:  #223-D: function "debug" declared implicitly
+          debug("UnPacketPublish 44.\r\n");
+..\App\mqtt\MqttKit.c(975): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "const char *"
+        if(strchr((int8 *)topic, '+') || strchr((int8 *)topic, '#'))
+..\App\mqtt\MqttKit.c(975): warning:  #167-D: argument of type "int8 *" is incompatible with parameter of type "const char *"
+        if(strchr((int8 *)topic, '+') || strchr((int8 *)topic, '#'))
+..\App\mqtt\MqttKit.c: 47 warnings, 0 errors
+compiling cJSON.c...
+compiling Route.c...
+..\Alg\Route.c(110): warning:  #177-D: function "getRouLen" was declared but never referenced
+  uint8 getRouLen(void)
+..\Alg\Route.c(172): warning:  #177-D: function "UpdateEst" was declared but never referenced
+  void UpdateEst(void)
+..\Alg\Route.c(57): warning:  #177-D: function "evaluateCost" was declared but never referenced
+  static void  evaluateCost(void);       //通?糯??拦?
+..\Alg\Route.c: 3 warnings, 0 errors
+compiling RCC.c...
+compiling Timer.c...
+compiling Queue.c...
+compiling UART1.c...
+..\HW\UART1\UART1.c(362): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
+      WriteUART2(info, len);//串??0发??
+..\HW\UART1\UART1.c: 1 warning, 0 errors
+compiling ADC.c...
+compiling U16Queue.c...
+compiling DAC.c...
+compiling Wave.c...
+compiling RADIO.c...
+..\HW\RADIO\RADIO.c(183): warning:  #188-D: enumerated type mixed with another type
+    GPIO_WriteBit(
+PIOB, 
+PIO_Pin_6, ((uint8)mode)&0x01);       //????Lora模?榈?M0位
+..\HW\RADIO\RADIO.c(184): warning:  #188-D: enumerated type mixed with another type
+    GPIO_WriteBit(
+PIOB, 
+PIO_Pin_5, (((uint8)mode)>>1)&0x01);  //????Lora模?榈?M1位
+..\HW\RADIO\RADIO.c(187): warning:  #1293-D: assignment in condition
+    while((ok = !isLoRaReady()) && (millis() - lastMillis) <= 100);  //?却??????瓿苫虺?时(ms)
+..\HW\RADIO\RADIO.c(248): warning:  #550-D: variable "Cnt" was set but never used
+    uint8 Cnt;
+..\HW\RADIO\RADIO.c(483): warning:  #188-D: enumerated type mixed with another type
+    RadioModems_t lastStatu = s_curMode;
+..\HW\RADIO\RADIO.c(69): warning:  #177-D: variable "s_arrSetting" was declared but never referenced
+  const static uint8 s_arrSetting[9] = {0xC0, 0x00, 0x00, 0x62, 0x00, 0x17, 0x03, 0x00, 0x00 }; //?娣??????玫牟???
+..\HW\RADIO\RADIO.c(201): warning:  #177-D: function "readRegister" was declared but never referenced
+  static uint8 readRegister(uint8 address)
+..\HW\RADIO\RADIO.c(282): warning:  #177-D: function "writeRegister" was declared but never referenced
+  static uint8 writeRegister(uint8 address, uint8 value)
+..\HW\RADIO\RADIO.c(82): warning:  #177-D: function "writeRegisters" was declared but never referenced
+  static  uint8    writeRegisters(uint8 addHead, uint8 value);             //写?拇?????
+..\HW\RADIO\RADIO.c: 9 warnings, 0 errors
+compiling UART2.c...
+compiling misc.c...
+compiling stm32f10x_flash.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_adc.c...
+compiling stm32f10x_dac.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_exti.c...
+compiling NVIC.c...
+compiling core_cm3.c...
+compiling stm32f10x_it.c...
+compiling system_stm32f10x.c...
+compiling SysTick.c...
+assembling startup_stm32f10x_hd.s...
 linking...
-Program Size: Code=22134 RO-data=506 RW-data=144 ZI-data=8648  
+Program Size: Code=22390 RO-data=506 RW-data=144 ZI-data=8656  
 FromELF: creating hex file...
-".\Objects\STM32KeilPrj.axf" - 0 Error(s), 11 Warning(s).
+".\Objects\STM32KeilPrj.axf" - 0 Error(s), 105 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Keil_v5\STM32KeilTest\01.F103基准工程实验\Project\RTE
   D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:19
 </pre>
 </body>
 </html>
