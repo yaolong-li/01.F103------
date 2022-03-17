@@ -125,13 +125,15 @@ void ProcHostCmd(uint8 recData)
     switch(pack.packType)  //模块ID
     {
       case TYPE_DATA:        //数据分组
+        debug("DATA\r\n");
         ProcDatePack(pack.arrData);
         break;
       case TYPE_ROUTE:        //路由分组  
+        debug("\r\nROUTE\r\n");
         ack = UpdateRouTab2(pack.arrData);              //更新路由表
-        ackArr[0] = ack;
-        sprintf((char*)ackArr+1, "OK=%d,TYPE_ROUTE ACK",ack);
-        SendAckPack(pack.arrData[0], pack.arrData[1], 0x00, ackArr, sizeof(ackArr));
+//        ackArr[0] = ack;
+//        sprintf((char*)ackArr+1, "OK=%d,TYPE_ROUTE ACK",ack);
+//        SendAckPack(pack.arrData[0], pack.arrData[1], 0x00, ackArr, sizeof(ackArr));
         break;
       default:          
         break;
@@ -170,20 +172,20 @@ void ProcDatePack(uint8* pRecData)
   char* out;
   static uint32 MsgNo=1;
   char MsgNobuf[10];
-  cJSON* item;
+  cJSON* id;
   cJSON* root = cJSON_CreateObject();
   cJSON* root2 = cJSON_CreateObject();
   cJSON* root3 = cJSON_CreateObject();
     
   sprintf(MsgNobuf, "%d", MsgNo);
-  item = cJSON_CreateString(MsgNobuf);
+  id = cJSON_CreateString(MsgNobuf);
     
   MsgNo++;
   
-  cJSON_AddItemToObject(root, "id", item);
+  cJSON_AddItemToObject(root, "id", id);
   cJSON_AddStringToObject(root, "version", "1.0");
     
-  cJSON_AddNumberToObject(root3, "value", 9);
+  cJSON_AddNumberToObject(root3, "value", pRecData[0]);
   //cJSON_AddNumberToObject(root3, "time", 1524448722000);//时间戳，可选
     
   cJSON_AddItemToObject(root2, "F103ship_temperature", root3);

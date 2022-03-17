@@ -134,18 +134,27 @@ void  SendRouteToNeighbor(uint8* pRouteData, uint8 len)
 * 创建日期：2022年02月12日
 * 注    意：数据数组长度最大为61个字节，太长只发前61个，无应答，不保证传输成功
 *********************************************************************************************************/
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+
+#else  //普通节点
 void  SendDateToParent(uint8* pSentData, uint8 len)
 {
   uint16 P_Add;  //父结点地址
   StructPackType  pt;  //包结构体变量
-
+  memset(&pt, '\0', sizeof(StructPackType));
+  
   pt.packType = TYPE_DATA;
   memcpy(pt.arrData, pSentData, len);
   P_Add = GetParentAddr();
   
+  if(P_Add == 0xffff)
+  {
+    debug("未连接Lora网络");
+    return;
+  }
   SendPackToHost(P_Add>>8, P_Add, 0x00, &pt);
 }
-
+#endif
 /*********************************************************************************************************
 * 函数名称：SendDateToE20
 * 函数功能：给E20发送数据

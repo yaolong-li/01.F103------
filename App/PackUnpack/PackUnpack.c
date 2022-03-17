@@ -28,6 +28,7 @@
 #include  "Timer.h"
 #include "SendDataToHost.h"
 #include "string.h"
+#include "Main.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -96,8 +97,8 @@ static short CalculatePackCheckSum(StructPackType* pPack)
     sum+=answer;
   }
  
-  sum=(sum>>16)+(sum&0xffff);
-  sum+=(sum>>16);
+  //sum=(sum>>16)+(sum&0xffff);
+  //sum+=(sum>>16);
   answer=~sum;
   
   return answer;
@@ -114,12 +115,15 @@ static short CalculatePackCheckSum(StructPackType* pPack)
 *********************************************************************************************************/
 static uint8  UnpackWithCheckSum(StructPackType* pPack)
 {
-//  if(pPack->checkSum == CalculatePackCheckSum(pPack))//校验和一致
-//  {
-//    return 1;
-//  }
-//  return 0;
+  #if 1
+  if(pPack->checkSum == CalculatePackCheckSum(pPack))//校验和一致
+  {
+    return 1;
+  }
+  return 0;
+  #else
   return 1;
+  #endif
 }
 
 /*********************************************************************************************************
@@ -186,7 +190,7 @@ uint8  UnPackData(uint8 data)
   pBuf = s_ptPack.arrData;      //pBuf指向s_ptPack的缓冲区arrData，即pBuf和s_ptPack->arrData的值是同一个
   if(s_iGotPackId)            //已经接收到包ID
   {
-    if(millis_cur - s_millis_last < 50)//时间间隔不超过50ms
+    if(millis_cur - s_millis_last < 300)//时间间隔不超过xms
     {
       pBuf[s_iPackLen - 1] = data;             //赋给pBuf[s_iPackLen]，也相当于赋给s_ptPack中对应的成员
       s_iPackLen++;                            //包长自增
@@ -195,17 +199,30 @@ uint8  UnPackData(uint8 data)
       {
         findPack = UnpackWithCheckSum(&s_ptPack);  //接收到完整数据包后尝试解包
         s_iGotPackId = 0;                      //清除获取到包ID标志，即重新判断下一个数据包
+        
+        #if (defined SINK) && (SINK == TRUE)//汇聚节点
+        if( s_ptPack.packType != 0x02 && findPack == 0)//   s_ptPack.packType != 0x02 &&
+        {
+          debug((uint8*)&s_ptPack);
+          
+        }
+        #endif
+        
       }
     }
     else//超时，认为是新数据包
     {
-      s_iRestByteNum     = PACKLEN - 1;//剩余的包长，即打包好的包长减去1
-      s_iPackLen         = 1;          //尚未接收到包ID即表示包长为1
-      s_ptPack.packType = data;       //数据包的种类
-      s_iGotPackId       = 1;          //表示已经接收到包ID 
+      debug("超时");
+      if( data == TYPE_DATA || data == TYPE_ROUTE  || data == TYPE_SYS)
+      {
+        s_iRestByteNum     = PACKLEN - 1;//剩余的包长，即打包好的包长减去1
+        s_iPackLen         = 1;          //尚未接收到包ID即表示包长为1
+        s_ptPack.packType = data;       //数据包的种类
+        s_iGotPackId       = 1;          //表示已经接收到包ID 
+      }
     }
   }
-  else if( data == TYPE_DATA || data == TYPE_ROUTE  || data == TYPE_SYS)       //当前的数据为包ID,即接收到包头开始接收，否则丢弃
+  else if(data == TYPE_DATA || data == TYPE_ROUTE  || data == TYPE_SYS)       //当前的数据为包ID,即接收到包头开始接收，否则丢弃
   {
     s_iRestByteNum     = PACKLEN - 1;//剩余的包长，即打包好的包长减去1
     s_iPackLen         = 1;          //尚未接收到包ID即表示包长为1

@@ -130,7 +130,7 @@ static  void  ConfigLRGPIO(void)
   EXTI_InitStructure.EXTI_Line    = EXTI_Line4;           //选择EXTI4通道
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;               //使能中断
   EXTI_InitStructure.EXTI_Mode    = EXTI_Mode_Interrupt;  //模式选择
-  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  //上升沿中断
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;  //上升沿和下降沿中断
   EXTI_Init(&EXTI_InitStructure);                         //根据参数初始化EXTI
   
   //配置NVIC
@@ -156,7 +156,24 @@ void EXTI4_IRQHandler(void)
   if(EXTI_GetITStatus(EXTI_Line4) == SET)   //判断外部中断是否发生
   {
     EXTI_ClearITPendingBit(EXTI_Line4);     //清除外部中断标志
-    s_Aux = AUX_STATE_FREE;                 //中断表示LORA模块空闲
+    
+    if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) == 1)
+    {
+      DelayNus(100);//消抖
+      if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) == 1)
+      {
+        s_Aux = AUX_STATE_FREE;                 //上升沿中断表示LORA模块空闲
+      }
+    }
+    else
+    {
+      DelayNus(100);//消抖
+      if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) == 0)
+      {
+        s_Aux = AUX_STATE_BUSSY;                 //下降沿中断表示LORA模块空闲
+      }
+    }
+    
   }
 }
 
@@ -178,7 +195,7 @@ static  uint8  ConfigLRMode(uint8 mode)
 //  lastMillis = millis();    //当前毫秒数
 //  while((ok = !isLoRaReady()) && (millis() - lastMillis) <= 100);  //等待模块空闲或超时(ms)
 //  DelayNms(5);
-  s_Aux = AUX_STATE_BUSSY;  //先置忙标志位
+//  s_Aux = AUX_STATE_BUSSY;  //先置忙标志位
   s_curMode = mode;         //更新当前模式
   GPIO_WriteBit(GPIOB, GPIO_Pin_6, ((uint8)mode)&0x01);       //配置Lora模块的M0位
   GPIO_WriteBit(GPIOB, GPIO_Pin_5, (((uint8)mode)>>1)&0x01);  //配置Lora模块的M1位
@@ -215,7 +232,7 @@ static uint8 readRegister(uint8 address)
   
   i=0;
   lastMillis = millis();      //当前毫秒数
-  while(i < 4 || millis() - lastMillis >= 100)//收到4字节或等待超过0.1S退出循环
+  while(i < 4 || millis() - lastMillis <= 100)//收到4字节或等待超过0.1S退出循环
   {
     i += ReadUART1(&pBufRes[i] , 4);
   }
@@ -296,7 +313,7 @@ static uint8 writeRegister(uint8 address, uint8 value)
   
   i=0;
   lastMillis = millis();      //当前毫秒数
-  while(i < 4 || millis() - lastMillis >= 100)//收到4字节或等待超过0.1S退出循环
+  while(i < 4 || millis() - lastMillis <= 100)//收到4字节或等待超过0.1S退出循环
   {
     i += ReadUART1(&pBufRes[i] , 4);
     
@@ -432,10 +449,33 @@ uint8 isLoRaReady()
 uint8  RadioSendData(uint8 *pBufData, uint8 size)
 {
   uint8 ok_config = 0;//切换模式标志，0---切换失败
+  uint32 lastMillis;
   
-  if(GetAuxState())//lora模块空闲，缓冲区为 空
+  if(!GetUART1TxSts() && GetAuxState())// 上一个数据包已发完，串口缓冲区为 空
   {
-    s_RadioBuf = LoRaBufMax;
+    DelayNms(5);
+    if(GetAuxState())//lora模块空闲，缓冲区为 空
+    {
+      s_RadioBuf = LoRaBufMax;
+    }
+    else//Lora模块还在发上一个数据包
+    {
+      lastMillis = millis();      //当前毫秒数
+      while(!GetAuxState() && millis() - lastMillis <= 100)//最多等待0.1S
+      {
+        
+      }
+      DelayNms(100);
+    }
+  }
+  else//Lora模块还在发上一个数据包
+  {
+    lastMillis = millis();      //当前毫秒数
+    while(GetUART1TxSts() && millis() - lastMillis <= 100)//最多等待0.1S
+    {
+      
+    }
+    DelayNms(100);
   }
   
   if(s_curMode == MODEM_TRANSFER)
@@ -452,7 +492,7 @@ uint8  RadioSendData(uint8 *pBufData, uint8 size)
   {
     if(size > WriteUART1(pBufData, size))
     {
-      debug("RadioSendData中串口缓冲区溢出");
+      debug("RadioSendData中串口缓冲区溢出\r\n");
       return 0;
     }
     s_RadioBuf -= size;
@@ -460,11 +500,11 @@ uint8  RadioSendData(uint8 *pBufData, uint8 size)
   }
   else if(!ok_config)
   {
-    debug("切换传输模式失败462");
+    debug("切换传输模式失败462\r\n");
   }
   else if(s_RadioBuf < size)
   {
-    debug("数据太多lora接收缓冲区溢出");
+    debug("数据太多lora接收缓冲区溢出\r\n");
   }
   return 0;
 }
@@ -522,9 +562,9 @@ uint16 getAddress(void)
     s_address = add;
   }
   else{
-    //printf("读取Lora模块寄存器地址失败，当前地址%d",add);
+    debug("读取Lora模块寄存器地址失败，当前地址%d\r\n",add);
   }
-  //printf("s_address:%d",s_address);
+  debug("s_address:%d\r\n",s_address);
   return add;
 }
 

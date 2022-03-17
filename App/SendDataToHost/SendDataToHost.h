@@ -37,9 +37,10 @@ void  InitSendDataToHost(void);                          //³õÊ¼»¯SendDataToHostÄ
 void SendAckPack(uint8 addh, uint8 addl,uint8 channel, uint8* ackMsg, uint8 len);  //·¢ËÍÃüÁîÓ¦´ğÊı¾İ°ü
 
 void  SendRouteToNeighbor(uint8* pRouteData, uint8 len);               //¹ã²¥·¢ËÍÂ·ÓÉĞÅÏ¢
-void  SendDateToParent(uint8* pSentData, uint8 len);                   //¸ø¸¸½áµã·¢ËÍÊı¾İ
 #if (defined SINK) && (SINK == TRUE)//»ã¾Û½Úµã
 void  SendDateToE20(uint8* pSentData, uint8 len);                   //¸øEport-E20·¢ËÍÊı¾İ
+#else
+void  SendDateToParent(uint8* pSentData, uint8 len);                   //¸ø¸¸½áµã·¢ËÍÊı¾İ
 #endif
 
 #endif

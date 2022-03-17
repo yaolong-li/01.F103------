@@ -21,6 +21,7 @@
 #include "cJSON.h"
 #include "String.h"
 #include "procHostCmd.h"
+#include <stdlib.h>
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -106,7 +107,7 @@ static  void  Proc2msTask(void)
 
   static uint16 s_iCnt4 = 0;   //计数器
   static uint8 s_iPointCnt = 0;        //温度数据包的点计数器
-  static uint8 s_arrWaveData[5] = {0}; //初始化数组
+  static uint8 s_arrWaveData[70] = {0}; //初始化数组
   
   if(Get2msFlag())  //判断2ms标志状态
   {
@@ -115,19 +116,26 @@ static  void  Proc2msTask(void)
       ProcHostCmd(uart1RecData);  //处理命令      
     }
 
+    srand(millis());
     s_iCnt4++;      //计数增加
-    if(s_iCnt4 >= 400)  //达到800ms
+    if(s_iCnt4 >= 100 + rand()%128+20)  //达到2xms
     {
       if(ReadADCBuf(&adcData))  //从缓存队列中取出1个数据到adcData
       {
         ClearADCBuf();
-        waveData = (float)adcData*(3.3 / 4095.0);
+        waveData = (float)adcData*(3.3 / 4096);
         waveData = (1.43 - waveData)/0.0043 + 25.0;  //计算获取温度的值，12位ADC，2^12=4095，参考电压3.3V
-        s_arrWaveData[s_iPointCnt] = waveData;  //存放到数组
+        s_arrWaveData[s_iPointCnt] = (uint8)(int)waveData;  //存放到数组
         s_iPointCnt++;  //温度数据包的点计数器加1操作
 
-        if(s_iPointCnt >= 5)  //接收到5个点
+        if(s_iPointCnt >= 1)  //接收到x个点
         {
+          #if (defined SINK) && (SINK == TRUE)//汇聚节点
+          #else
+          SendDateToParent(s_arrWaveData, 1);
+          //SendDateToParent(s_arrWaveData, 70);
+          //SendDateToParent(s_arrWaveData, 70);
+          #endif
           s_iPointCnt = 0;  //计数器清零
         }
       }
@@ -152,18 +160,18 @@ static  void  Proc1SecTask(void)
 { 
   char a[50] = {0};
   int b=0;
-  
   static uint8 s_iCnt = 0;   //计数器
+  
   if(Get1SecFlag()) //判断1s标志状态
   {
     //printf发送到UART1，即到LOAR模块
-    //printf("This is the first STM32F103 Project, by Zhangsan\r\n");
+    //debug("This is the first STM32F103 Project, by Zhangsan\r\n");
     #if (defined SINK) && (SINK == TRUE)//汇聚节点
     ProcCloudCmd();    
     #endif
     s_iCnt++;
     
-    if(s_iCnt >= 2)//每2秒执行一次
+    if(s_iCnt >= 3 + rand()%3)//每n秒执行一次
     {
       s_iCnt = 0;
       RouteTimerTasks();
@@ -187,7 +195,7 @@ int main(void)
   InitHardware();   //初始化硬件相关函数
   InitSoftware();   //初始化软件相关函数
   
-  printf("Init System has been finished.\r\n" );  //打印系统状态
+  debug("Init System has been finished.\r\n" );  //打印系统状态
 
   while(1)
   {

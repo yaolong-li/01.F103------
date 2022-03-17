@@ -22,6 +22,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include "UART2.h"
+#include "Main.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -189,7 +190,8 @@ static  void  ConfigUART1(uint32 bound)
 static  void  EnableUART1Tx(void)
 {
   s_iUART1TxSts = UART_STATE_ON;                     //串口发送数据状态设置为正在发送数据
-
+//  s_Aux = AUX_STATE_BUSSY;  //先置忙标志位
+  
   USART_ITConfig(USART1, USART_IT_TXE, ENABLE);     //使能发送中断
 }
 
@@ -315,7 +317,7 @@ uint8  WriteUART1(uint8 *pBuf, uint8 len)
   
   if(wLen < len)
   {
-    printf("UART1发送缓冲区溢出,还要%d个字节",len - wLen);
+    debug("UART1发送缓冲区溢出,还要%d个字节\r\n",len - wLen);
   }
   
   return wLen;  //返回实际写入数据的个数
@@ -338,7 +340,21 @@ uint8  ReadUART1(uint8 *pBuf, uint8 len)
 
   return rLen;  //返回实际读取数据的长度
 }
-    
+
+/*********************************************************************************************************
+* 函数名称：ReadUART1
+* 函数功能：读串口状态
+* 输入参数：void
+* 输出参数：void
+* 返 回 值：1, 串口正在发送数据
+* 创建日期：2022年3月14日16:50:29
+* 注    意：
+*********************************************************************************************************/   
+uint8 GetUART1TxSts(void)
+{
+  return s_iUART1TxSts;
+}
+
 /*********************************************************************************************************
 * 函数名称：fputc
 * 函数功能：重定向函数  
@@ -371,7 +387,10 @@ void debug(uint8 * msg, ...)
 
     len=strlen((char *)info);
     if(len==0) return;
-
-    WriteUART2(info, len);//串口0发送
+    #if (defined SINK) && (SINK == TRUE)//汇聚节点
+    WriteUART2(info, len);//串口2发送
+    #else
+    //WriteUART1(info, len);//串口1发送
+    #endif
 #endif
 }

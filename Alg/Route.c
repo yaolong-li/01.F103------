@@ -437,7 +437,7 @@ uint16 GetParentAddr(void)
   
   add = s_structRouteBuf[IndexOfParent].addh;
   add <<= 8;
-  add = s_structRouteBuf[IndexOfParent].addl;
+  add = add | s_structRouteBuf[IndexOfParent].addl;
 
   return add;
 }
