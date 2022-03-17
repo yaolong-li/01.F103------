@@ -29,6 +29,7 @@
 #include "Main.h"
 #include "UART2.h"
 #include <string.h>
+#include "UART1.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -216,6 +217,7 @@ void ProcCloudCmd(void)
   uint8 Cnt;
   cJSON *root, *method, *id, *params, *ADC_period_S, *version;
   char str[] = "{\"method\":\"thing.service.property.set\",\"id\":\"19244945\",\"params\":{\"ADC_period_S\":3},\"version\":\"1.0.0\"}";
+  char pdebug[10] = {0};
 
   Cnt = ReadUART2(CmdBuf, 200);
   
@@ -238,7 +240,7 @@ void ProcCloudCmd(void)
   {
    return;
   }
-  if(strcmp(IdBuff, id->valuestring) == 0 || strcmp("1.0.0", version->valuestring) == 0)//同一条命令或版本不对
+  if(strcmp(IdBuff, id->valuestring) == 0 || strcmp("1.0.0", version->valuestring) != 0)//同一条命令或版本不同
   {
     return;
   }
@@ -252,7 +254,8 @@ void ProcCloudCmd(void)
   {
     if (ADC_period_S)
     {
-      ADC_period_S->valueint;
+      sprintf(pdebug, "%d", ADC_period_S->valueint);
+      debug(pdebug);
     }
   }
 

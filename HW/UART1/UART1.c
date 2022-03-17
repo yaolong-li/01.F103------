@@ -204,6 +204,8 @@ static  void  EnableUART1Tx(void)
 *********************************************************************************************************/
 static  void  SendCharUsedByFputc(uint16 ch)
 {  
+  #if (defined SINK) && (SINK == TRUE)//汇聚节点
+  //网关发送位置
   USART_SendData(USART2, (uint8)ch);
 
   //等待发送完毕
@@ -211,6 +213,17 @@ static  void  SendCharUsedByFputc(uint16 ch)
   {
     
   }
+  #else
+  //普通节点发送位置
+  USART_SendData(USART1, (uint8)ch);
+
+  //等待发送完毕
+  while(USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
+  {
+    
+  }
+  #endif
+  
 }
 
 /*********************************************************************************************************
