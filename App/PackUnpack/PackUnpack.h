@@ -39,6 +39,12 @@ typedef enum
   TYPE_SYS     = 0x03,  //系统信息
 }EnumPackType; 
 
+typedef enum 
+{
+  CMD_SET_SMP_PRD = 0x01,//设置采样周期
+  
+}EnumCmdType;
+
 //无线包类型结构体
 typedef struct
 {

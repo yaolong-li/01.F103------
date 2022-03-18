@@ -107,6 +107,31 @@ void SendAckPack(uint8 addh, uint8 addl,uint8 channel, uint8* ackMsg, uint8 len)
 }
 
 /*********************************************************************************************************
+* 函数名称：SendCmdPack
+* 函数功能：发送命令数据包
+* 输入参数：CmdID-命令ID号，Cmd-命令代号，CmdValue-命令参数，ObjectAdd-命令对象地址，channel-信道，PassCnt-命令转发次数
+* 输出参数：void
+* 返 回 值：void
+* 创建日期：2022年3月18日20:36:55
+* 注    意：
+*********************************************************************************************************/
+void SendCmdPack(uint8 CmdID, uint8 Cmd, uint8 CmdValue, uint16 ObjectAdd, uint8 PassCnt)  //发送命令包
+{
+  StructPackType  pt;              //包结构体2变量
+  
+  pt.packType = TYPE_SYS;
+
+  pt.arrData[0] = CmdID;
+  pt.arrData[1] = Cmd;
+  pt.arrData[2] = CmdValue;
+  pt.arrData[3] = ObjectAdd>>8;
+  pt.arrData[4] = ObjectAdd;
+  pt.arrData[5] = PassCnt+1;
+  
+  SendPackToHost(0xff, 0xff, 0x00, &pt);
+}
+
+/*********************************************************************************************************
 * 函数名称：SendRouteToNeighbor
 * 函数功能：广播发送路由信息
 * 输入参数：pRouteData-路由数据存放的地址

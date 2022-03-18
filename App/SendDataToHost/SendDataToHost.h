@@ -35,6 +35,7 @@
 *********************************************************************************************************/
 void  InitSendDataToHost(void);                          //初始化SendDataToHost模块
 void SendAckPack(uint8 addh, uint8 addl,uint8 channel, uint8* ackMsg, uint8 len);  //发送命令应答数据包
+void SendCmdPack(uint8 CmdID, uint8 Cmd, uint8 CmdValue, uint16 ObjectAdd, uint8 passCnt);  //发送命令包
 
 void  SendRouteToNeighbor(uint8* pRouteData, uint8 len);               //广播发送路由信息
 #if (defined SINK) && (SINK == TRUE)//汇聚节点

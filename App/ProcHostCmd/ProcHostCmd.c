@@ -45,10 +45,13 @@
 #if (defined SINK) && (SINK == TRUE)//汇聚节点
 static uint8 IdBuff[10] = {0};//存储上次命令ID，防止重复
 #endif
+static uint8 lastRecCmdID = 0;
+
 /*********************************************************************************************************
 *                                              内部函数声明
 *********************************************************************************************************/
 static uint8  OnGenWave(uint8* pMsg);  //生成波形的响应函数
+static uint8  SetSamplePeriod(uint8 CmdVlaue);  //设置采样周期的响应函数
 
 /*********************************************************************************************************
 *                                              内部函数实现
@@ -83,6 +86,21 @@ static uint8 OnGenWave(uint8* pMsg)
 
   SetDACWave(wave);         //设置DAC波形属性
   
+  return(CMD_ACK_OK);       //返回命令成功
+}
+
+/*********************************************************************************************************
+* 函数名称：SetSamplePeriod
+* 函数功能：设置采样周期的响应函数
+* 输入参数：CmdVlaue
+* 输出参数：void
+* 返 回 值：应答消息
+* 创建日期：2022年3月18日21:56:34
+* 注    意：
+*********************************************************************************************************/
+static uint8  SetSamplePeriod(uint8 CmdVlaue)
+{
+  SetSmpPrd(CmdVlaue);
   return(CMD_ACK_OK);       //返回命令成功
 }
 
@@ -134,6 +152,9 @@ void ProcHostCmd(uint8 recData)
 //        ackArr[0] = ack;
 //        sprintf((char*)ackArr+1, "OK=%d,TYPE_ROUTE ACK",ack);
 //        SendAckPack(pack.arrData[0], pack.arrData[1], 0x00, ackArr, sizeof(ackArr));
+        break;
+      case TYPE_SYS:        //命令分组 
+        ProcCmdPack(pack.arrData);
         break;
       default:          
         break;
@@ -265,3 +286,40 @@ void ProcCloudCmd(void)
   cJSON_Delete(root);//最后释放内存
 }
 #endif
+
+/*********************************************************************************************************
+* 函数名称：ProcCmdPack
+* 函数功能：处理命令分组
+* 输入参数：recData
+* 输出参数：void
+* 返 回 值：void
+* 创建日期：2022年3月18日21:19:52
+* 注    意：接收处理SendCmdPack()函数的消息
+*********************************************************************************************************/
+void ProcCmdPack(uint8* pRecData)
+{  
+#if (defined SINK) && (SINK == TRUE)//汇聚节点
+#else
+  if(lastRecCmdID == pRecData[0])//已经接收过这条命令
+  {
+    return;
+  }
+  lastRecCmdID = pRecData[0];
+  if(getAddress() == ((uint16)pRecData[3]<<8 | (uint16)pRecData[4]))//命令对象是该节点
+  {
+    switch (pRecData[1])
+    {
+    	case CMD_SET_SMP_PRD: 
+        SetSamplePeriod(pRecData[2]);
+    		break;
+    	default:
+    		break;
+    }
+  }
+  else
+  {
+    SendCmdPack(pRecData[0], pRecData[1], pRecData[2], (uint16)pRecData[3]<<8 | (uint16)pRecData[4], pRecData[5]);//转发该命令
+  }
+  
+#endif
+}

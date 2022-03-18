@@ -49,4 +49,5 @@ void  ProcHostCmd(uint8 recData);//处理主机命令
 void  ProcCloudCmd(void);//处理云端下发的命令
 #endif
 void  ProcDatePack(uint8* pRecData);
+void  ProcCmdPack(uint8* pRecData);
 #endif
