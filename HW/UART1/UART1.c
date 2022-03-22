@@ -376,7 +376,7 @@ void debug(uint8 * msg, ...)
 {
 #if 1
     uint8 len=0;
-    char info[100] = {0};
+    char info[256] = {0};//小于实际msg大小时跳到HardFault_Handler()
     va_list args;
 
     if(msg==NULL) return;
@@ -393,4 +393,6 @@ void debug(uint8 * msg, ...)
     //WriteUART1(info, len);//串口1发送
     #endif
 #endif
+    
 }
+

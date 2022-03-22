@@ -24,3 +24,4 @@
 .\objects\radio.o: ..\HW\UART1\UART1.h
 .\objects\radio.o: ..\ARM\SysTick\SysTick.h
 .\objects\radio.o: ..\HW\Timer\Timer.h
+.\objects\radio.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

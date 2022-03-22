@@ -190,7 +190,7 @@ uint8  UnPackData(uint8 data)
   pBuf = s_ptPack.arrData;      //pBuf指向s_ptPack的缓冲区arrData，即pBuf和s_ptPack->arrData的值是同一个
   if(s_iGotPackId)            //已经接收到包ID
   {
-    if(millis_cur - s_millis_last < 300)//时间间隔不超过xms
+    if(millis_cur - s_millis_last < 50)//时间间隔不超过xms
     {
       pBuf[s_iPackLen - 1] = data;             //赋给pBuf[s_iPackLen]，也相当于赋给s_ptPack中对应的成员
       s_iPackLen++;                            //包长自增

@@ -154,6 +154,7 @@ void ProcHostCmd(uint8 recData)
 //        SendAckPack(pack.arrData[0], pack.arrData[1], 0x00, ackArr, sizeof(ackArr));
         break;
       case TYPE_SYS:        //命令分组 
+        debug("\r\nSYS\r\n");
         ProcCmdPack(pack.arrData);
         break;
       default:          
@@ -197,6 +198,7 @@ void ProcDatePack(uint8* pRecData)
   cJSON* root = cJSON_CreateObject();
   cJSON* root2 = cJSON_CreateObject();
   cJSON* root3 = cJSON_CreateObject();
+  cJSON* root3_1 = cJSON_CreateObject();
     
   sprintf(MsgNobuf, "%d", MsgNo);
   id = cJSON_CreateString(MsgNobuf);
@@ -207,9 +209,11 @@ void ProcDatePack(uint8* pRecData)
   cJSON_AddStringToObject(root, "version", "1.0");
     
   cJSON_AddNumberToObject(root3, "value", pRecData[0]);
+  cJSON_AddNumberToObject(root3_1, "value", pRecData[1]);
   //cJSON_AddNumberToObject(root3, "time", 1524448722000);//时间戳，可选
     
   cJSON_AddItemToObject(root2, "F103ship_temperature", root3);
+  cJSON_AddItemToObject(root2, "Smp_Period", root3_1);
   
   cJSON_AddItemToObject(root, "params", root2);
   cJSON_AddStringToObject(root, "method", "thing.event.property.post");
@@ -236,52 +240,67 @@ void ProcDatePack(uint8* pRecData)
 #if (defined SINK) && (SINK == TRUE)//汇聚节点
 void ProcCloudCmd(void)
 {
-  char CmdBuf[200]={0};
+  char CmdBuf[256]={0};
   uint8 Cnt;
-  cJSON *root, *method, *id, *params, *ADC_period_S, *version;
-  char str[] = "{\"method\":\"thing.service.property.set\",\"id\":\"19244945\",\"params\":{\"ADC_period_S\":3},\"version\":\"1.0.0\"}";
-  char pdebug[10] = {0};
+  cJSON *root, *method, *id, *params, *ADC_period_S, *version, *Period_ms, *CmdObj;
+  //char str[] = "{\"method\":\"thing.service.property.set\",\"id\":\"19244945\",\"params\":{\"ADC_period_S\":3},\"version\":\"1.0.0\"}";
+  char pdebug[100] = {0};
 
-  Cnt = ReadUART2(CmdBuf, 200);
+  Cnt = ReadUART2((uint8*)CmdBuf, 0xff);
   
   if(Cnt < 101)
   {
     return;
   }
-  debug(CmdBuf);
+  debug((uint8*)CmdBuf);
   
 /*接收成功则反序列化以下JSON
 {"method":"thing.service.property.set","id":"19244945","params":{"ADC_period_S":3},"version":"1.0.0"}
 */
   root = cJSON_Parse(CmdBuf);
+  //必须有的参数
   method = cJSON_GetObjectItem(root, "method");//没有此对象则返回空
   id = cJSON_GetObjectItem(root, "id");
   version = cJSON_GetObjectItem(root, "version");
   params = cJSON_GetObjectItem(root, "params");
+  //可能有的参数
   ADC_period_S = cJSON_GetObjectItem(params, "ADC_period_S");
+  Period_ms = cJSON_GetObjectItem(params, "Period_ms");
+  CmdObj = cJSON_GetObjectItem(params, "CmdObj");
   if(root == NULL || method == NULL || id == NULL  || version == NULL)
   {
-   return;
-  }
-  if(strcmp(IdBuff, id->valuestring) == 0 || strcmp("1.0.0", version->valuestring) != 0)//同一条命令或版本不同
-  {
+    cJSON_Delete(root);
     return;
+  }
+  if(strcmp((char*)IdBuff, id->valuestring) == 0 || strcmp("1.0.0", version->valuestring) != 0)//同一条命令或版本不同
+  {
+//    cJSON_Delete(root);
+//    return;
   }
   else
   {
     memset(IdBuff, '\0', 10);
-    strcpy(IdBuff, id->valuestring);
+    strcpy((char*)IdBuff, id->valuestring);
   }
   
-  if(0 == strcmp("thing.service.property.set", method->valuestring))//与thing.service.property.set相同
+  if(0 == strcmp("thing.service.property.set", method->valuestring))//与thing.service.property.set相同,即设置属性
   {
     if (ADC_period_S)
     {
       sprintf(pdebug, "%d", ADC_period_S->valueint);
-      debug(pdebug);
+      debug((uint8*)pdebug);
+
     }
   }
-
+  if(0 == strcmp("thing.service.Smp_Period", method->valuestring))//与thing.service.Smp_Period相同,即设置采样周期
+  {
+    if (Period_ms && CmdObj)
+    {
+      sprintf(pdebug, "\r\nPeriod_ms:%d, CmdObj:%d\r\n", Period_ms->valueint, CmdObj->valueint);
+      debug((uint8*)pdebug);
+      SendCmdPack((uint8)*(id->valuestring), CMD_SET_SMP_PRD, Period_ms->valueint, CmdObj->valueint, 0);
+    }
+  }
 
   cJSON_Delete(root);//最后释放内存
 }
@@ -302,7 +321,7 @@ void ProcCmdPack(uint8* pRecData)
 #else
   if(lastRecCmdID == pRecData[0])//已经接收过这条命令
   {
-    return;
+//    return;
   }
   lastRecCmdID = pRecData[0];
   if(getAddress() == ((uint16)pRecData[3]<<8 | (uint16)pRecData[4]))//命令对象是该节点

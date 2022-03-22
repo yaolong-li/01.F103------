@@ -31,7 +31,7 @@
 /*********************************************************************************************************
 *                                              内部变量
 *********************************************************************************************************/
-static uint8 Smp_Period = 100;//x ms
+static uint16 Smp_Period = 1500;//x ms
 
 /*********************************************************************************************************
 *                                              枚举结构体定义
@@ -119,7 +119,7 @@ static  void  Proc2msTask(void)
 
     srand(millis());
     s_iCnt4++;      //计数增加
-    if(s_iCnt4 >= Smp_Period/2 + rand()%128+20)  //达到Smp_Period (ms)
+    if(s_iCnt4 >= Smp_Period/2 + rand()%120+20)  //达到Smp_Period (ms)
     {
       if(ReadADCBuf(&adcData))  //从缓存队列中取出1个数据到adcData
       {
@@ -127,13 +127,14 @@ static  void  Proc2msTask(void)
         waveData = (float)adcData*(3.3 / 4096);
         waveData = (1.43 - waveData)/0.0043 + 25.0;  //计算获取温度的值，12位ADC，2^12=4095，参考电压3.3V
         s_arrWaveData[s_iPointCnt] = (uint8)(int)waveData;  //存放到数组
+        s_arrWaveData[s_iPointCnt+1] = Smp_Period/100;
         s_iPointCnt++;  //温度数据包的点计数器加1操作
 
         if(s_iPointCnt >= 1)  //接收到x个点
         {
           #if (defined SINK) && (SINK == TRUE)//汇聚节点
           #else
-          SendDateToParent(s_arrWaveData, 1);
+          SendDateToParent(s_arrWaveData, 2);
           //SendDateToParent(s_arrWaveData, 70);
           //SendDateToParent(s_arrWaveData, 70);
           #endif
@@ -163,12 +164,25 @@ static  void  Proc1SecTask(void)
   int b=0;
   static uint8 s_iCnt = 0;   //计数器
   
+  uint8 arrData[10] = {0};
+  arrData[0] = 0x00;
+  arrData[1] = 0x01;
+  arrData[2] = 0xc0;
+  arrData[3] = 0x00;
+  arrData[4] = 0x02;
+  arrData[5] = 0;
+  
   if(Get1SecFlag()) //判断1s标志状态
   {
     //printf发送到UART1，即到LOAR模块
     //debug("This is the first STM32F103 Project, by Zhangsan\r\n");
     #if (defined SINK) && (SINK == TRUE)//汇聚节点
     ProcCloudCmd();    
+    
+    //SendCmdPack(0x00, 0x01, 0xff, 0x0001, 0);
+    
+    #else
+    
     #endif
     s_iCnt++;
     
@@ -193,7 +207,8 @@ static  void  Proc1SecTask(void)
 *********************************************************************************************************/
 uint8  SetSmpPrd(uint8 Period)
 {
-  Smp_Period = Period;
+  uint16 min = 1000;
+  Smp_Period = 100*Period>min? 100*Period:min;
 }
 
 /*********************************************************************************************************

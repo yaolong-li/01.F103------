@@ -99,6 +99,7 @@ void  InitSendDataToHost(void)
 void SendAckPack(uint8 addh, uint8 addl,uint8 channel, uint8* ackMsg, uint8 len)
 {
   StructPackType  pt;              //包结构体2变量
+  memset(&pt, '\0', sizeof(StructPackType));
   
   pt.packType = TYPE_DATA;
   memcpy(pt.arrData, ackMsg, len);
@@ -118,6 +119,7 @@ void SendAckPack(uint8 addh, uint8 addl,uint8 channel, uint8* ackMsg, uint8 len)
 void SendCmdPack(uint8 CmdID, uint8 Cmd, uint8 CmdValue, uint16 ObjectAdd, uint8 PassCnt)  //发送命令包
 {
   StructPackType  pt;              //包结构体2变量
+  memset(&pt, '\0', sizeof(StructPackType));
   
   pt.packType = TYPE_SYS;
 
@@ -143,6 +145,7 @@ void SendCmdPack(uint8 CmdID, uint8 Cmd, uint8 CmdValue, uint16 ObjectAdd, uint8
 void  SendRouteToNeighbor(uint8* pRouteData, uint8 len)
 {
   StructPackType  pt;  //包结构体变量
+  memset(&pt, '\0', sizeof(StructPackType));
   
   pt.packType = TYPE_ROUTE;
   memcpy(pt.arrData, pRouteData, len);

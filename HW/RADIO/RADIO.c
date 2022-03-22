@@ -29,6 +29,7 @@
 #include "stm32f10x_conf.h"
 #include "SysTick.h"
 #include "UART1.h"
+#include <stdlib.h>
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -461,21 +462,21 @@ uint8  RadioSendData(uint8 *pBufData, uint8 size)
     else//Lora模块还在发上一个数据包
     {
       lastMillis = millis();      //当前毫秒数
-      while(!GetAuxState() && millis() - lastMillis <= 100)//最多等待0.1S
+      while(!GetAuxState() && millis() - lastMillis <= 500)//最多等待x mS
       {
-        
+      
       }
-      DelayNms(100);
+      DelayNms(3 + rand()%4);
     }
   }
   else//Lora模块还在发上一个数据包
   {
     lastMillis = millis();      //当前毫秒数
-    while(GetUART1TxSts() && millis() - lastMillis <= 100)//最多等待0.1S
+    while(GetUART1TxSts() && millis() - lastMillis <= 500)//最多等待x mS
     {
       
     }
-    DelayNms(100);
+    DelayNms(10 + rand()%4);//等待时间太长，检测模块空闲已经过时
   }
   
   if(s_curMode == MODEM_TRANSFER)
