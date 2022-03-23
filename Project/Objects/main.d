@@ -1,4 +1,9 @@
 .\objects\main.o: ..\App\Main\Main.c
+.\objects\main.o: ..\App\cJSON\cJSON.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\String.h
+.\objects\main.o: ..\App\ProcHostCmd\procHostCmd.h
+.\objects\main.o: ..\App\DataType\DataType.h
 .\objects\main.o: ..\App\Main\Main.h
 .\objects\main.o: ..\ARM\System\stm32f10x_conf.h
 .\objects\main.o: ..\FW\inc\stm32f10x_adc.h
@@ -18,7 +23,6 @@
 .\objects\main.o: ..\FW\inc\stm32f10x_tim.h
 .\objects\main.o: ..\FW\inc\stm32f10x_usart.h
 .\objects\main.o: ..\FW\inc\misc.h
-.\objects\main.o: ..\App\DataType\DataType.h
 .\objects\main.o: ..\ARM\NVIC\NVIC.h
 .\objects\main.o: ..\ARM\SysTick\SysTick.h
 .\objects\main.o: ..\HW\RCC\RCC.h
@@ -30,13 +34,10 @@
 .\objects\main.o: ..\HW\RADIO\RADIO.h
 .\objects\main.o: ..\HW\DAC\Wave.h
 .\objects\main.o: ..\App\ProcHostCmd\ProcHostCmd.h
-.\objects\main.o: ..\App\Main\Main.h
 .\objects\main.o: ..\App\PackUnpack\PackUnpack.h
 .\objects\main.o: ..\HW\DAC\DAC.h
 .\objects\main.o: ..\App\SendDataToHost\SendDataToHost.h
+.\objects\main.o: ..\App\Main\Main.h
 .\objects\main.o: ..\HW\ADC\ADC.h
 .\objects\main.o: ..\Alg\Route.h
-.\objects\main.o: ..\App\cJSON\cJSON.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\String.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

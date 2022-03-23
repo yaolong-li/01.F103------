@@ -388,7 +388,7 @@ void debug(uint8 * msg, ...)
     len=strlen((char *)info);
     if(len==0) return;
     #if (defined SINK) && (SINK == TRUE)//汇聚节点
-    WriteUART2(info, len);//串口2发送
+    //WriteUART2((uint8*)info, len);//串口2发送
     #else
     //WriteUART1(info, len);//串口1发送
     #endif

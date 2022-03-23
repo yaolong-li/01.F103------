@@ -17,11 +17,11 @@
 /*********************************************************************************************************
 *                                              包含头文件
 *********************************************************************************************************/
-#include "Main.h"
 #include "cJSON.h"
 #include "String.h"
 #include "procHostCmd.h"
 #include <stdlib.h>
+#include "Main.h"
 
 /*********************************************************************************************************
 *                                              宏定义
@@ -108,7 +108,7 @@ static  void  Proc2msTask(void)
 
   static uint16 s_iCnt4 = 0;   //计数器
   static uint8 s_iPointCnt = 0;        //温度数据包的点计数器
-  static uint8 s_arrWaveData[70] = {0}; //初始化数组
+  static uint8 s_arrData[70] = {0}; //初始化数组
   
   if(Get2msFlag())  //判断2ms标志状态
   {
@@ -126,17 +126,20 @@ static  void  Proc2msTask(void)
         ClearADCBuf();
         waveData = (float)adcData*(3.3 / 4096);
         waveData = (1.43 - waveData)/0.0043 + 25.0;  //计算获取温度的值，12位ADC，2^12=4095，参考电压3.3V
-        s_arrWaveData[s_iPointCnt] = (uint8)(int)waveData;  //存放到数组
-        s_arrWaveData[s_iPointCnt+1] = Smp_Period/100;
+        s_arrData[s_iPointCnt] = (uint8)(int)waveData;  //存放到数组
+        s_arrData[s_iPointCnt+1] = Smp_Period/100;
+        s_arrData[s_iPointCnt+2] = getAddress()>>8;
+        s_arrData[s_iPointCnt+3] = getAddress();
+        
         s_iPointCnt++;  //温度数据包的点计数器加1操作
 
         if(s_iPointCnt >= 1)  //接收到x个点
         {
           #if (defined SINK) && (SINK == TRUE)//汇聚节点
           #else
-          SendDateToParent(s_arrWaveData, 2);
-          //SendDateToParent(s_arrWaveData, 70);
-          //SendDateToParent(s_arrWaveData, 70);
+          SendDateToParent(s_arrData, 2);
+          //SendDateToParent(s_arrData, 70);
+          //SendDateToParent(s_arrData, 70);
           #endif
           s_iPointCnt = 0;  //计数器清零
         }
@@ -160,8 +163,8 @@ static  void  Proc2msTask(void)
 *********************************************************************************************************/
 static  void  Proc1SecTask(void)
 { 
-  char a[50] = {0};
-  int b=0;
+  //char a[50] = {0};
+  //int b=0;
   static uint8 s_iCnt = 0;   //计数器
   
   uint8 arrData[10] = {0};
@@ -208,7 +211,7 @@ static  void  Proc1SecTask(void)
 uint8  SetSmpPrd(uint8 Period)
 {
   uint16 min = 1000;
-  Smp_Period = 100*Period>min? 100*Period:min;
+  Smp_Period = 100*Period>min? 100*Period:min;//最快1S采样1次
 }
 
 /*********************************************************************************************************

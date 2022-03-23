@@ -3,16 +3,15 @@
 <title>Static Call Graph - [.\Objects\STM32KeilPrj.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\STM32KeilPrj.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Tue Mar 22 21:14:48 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Wed Mar 23 11:31:15 2022
 <BR><P>
-<H3>Maximum Stack Usage =       1036 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        960 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; Proc1SecTask &rArr; ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+main &rArr; Proc1SecTask &rArr; ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 <P>
 <H3>
 Mutually Recursive functions
 </H3> <LI><a href="#[1c]">ADC1_2_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1c]">ADC1_2_IRQHandler</a><BR>
- <LI><a href="#[fb]">WriteUART2</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[eb]">debug</a><BR>
  <LI><a href="#[152]">print_object</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[14d]">print_value</a><BR>
  <LI><a href="#[14f]">print_array</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[14d]">print_value</a><BR>
  <LI><a href="#[ee]">cJSON_Delete</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[ee]">cJSON_Delete</a><BR>
@@ -302,14 +301,14 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;case_insensitive_strcmp
 </UL>
 
-<P><STRONG><a name="[de]"></a>rand</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, rand.o(.text))
+<P><STRONG><a name="[dd]"></a>rand</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, rand.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RadioSendData
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc1SecTask
 </UL>
 
-<P><STRONG><a name="[e5]"></a>srand</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rand.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<P><STRONG><a name="[e4]"></a>srand</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rand.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[bf]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
@@ -325,7 +324,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[fc]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<BR><BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 </UL>
 
 <P><STRONG><a name="[15c]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
@@ -345,13 +344,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitPackUnpack
 </UL>
 
-<P><STRONG><a name="[db]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
+<P><STRONG><a name="[e9]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendRouteToNeighbor
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendCmdPack
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc1SecTask
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendRouteTask
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_ParseWithLengthOpts
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_number
@@ -377,12 +375,12 @@ Global Symbols
 <P><STRONG><a name="[ef]"></a>strcmp</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, strcmp.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = strcmp
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_object_item
 </UL>
 
 <P><STRONG><a name="[f0]"></a>strcpy</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, strcpy.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<BR><BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_value
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_string_ptr
 </UL>
@@ -424,7 +422,7 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
@@ -442,7 +440,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[5b]"></a>__aeabi_dmul</STRONG> (Thumb, 228 bytes, Stack size 48 bytes, dmul.o(.text))
@@ -450,7 +448,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compare_double
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_value
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
@@ -461,7 +459,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_value
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
@@ -471,7 +469,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[69]"></a>__aeabi_i2d</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, dflti.o(.text))
@@ -490,8 +488,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcDatePack
 </UL>
 
-<P><STRONG><a name="[e8]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<P><STRONG><a name="[e7]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[6b]"></a>__aeabi_d2iz</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, dfixi.o(.text))
@@ -503,8 +501,8 @@ Global Symbols
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_number
 </UL>
 
-<P><STRONG><a name="[e7]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<P><STRONG><a name="[e6]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[151]"></a>__aeabi_cdcmpeq</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, cdcmple.o(.text))
@@ -529,7 +527,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_scanf_really_real
 </UL>
 
@@ -728,19 +726,19 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearU16Queue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[79]"></a>ClearU16Queue</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, u16queue.o(i.ClearU16Queue))
 <BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearADCBuf
 </UL>
 
-<P><STRONG><a name="[e0]"></a>Clr1SecFlag</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timer.o(i.Clr1SecFlag))
+<P><STRONG><a name="[df]"></a>Clr1SecFlag</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timer.o(i.Clr1SecFlag))
 <BR><BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc1SecTask
 </UL>
 
-<P><STRONG><a name="[e9]"></a>Clr2msFlag</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timer.o(i.Clr2msFlag))
-<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<P><STRONG><a name="[e8]"></a>Clr2msFlag</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timer.o(i.Clr2msFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[44]"></a>DMA2_Channel3_IRQHandler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, dac.o(i.DMA2_Channel3_IRQHandler))
@@ -785,7 +783,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = DeQueue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART2
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART1
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART1
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadSendBuf2
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadSendBuf1
 </UL>
@@ -793,7 +791,7 @@ Global Symbols
 <P><STRONG><a name="[105]"></a>DeU16Queue</STRONG> (Thumb, 72 bytes, Stack size 12 bytes, u16queue.o(i.DeU16Queue))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = DeU16Queue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadADCBuf
+<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadADCBuf
 </UL>
 
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.DebugMon_Handler))
@@ -888,12 +886,12 @@ Global Symbols
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRGPIO
 </UL>
 
-<P><STRONG><a name="[dc]"></a>Get1SecFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.Get1SecFlag))
+<P><STRONG><a name="[db]"></a>Get1SecFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.Get1SecFlag))
 <BR><BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc1SecTask
 </UL>
 
-<P><STRONG><a name="[e2]"></a>Get2msFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.Get2msFlag))
-<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<P><STRONG><a name="[e1]"></a>Get2msFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.Get2msFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[101]"></a>GetUART1TxSts</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, uart1.o(i.GetUART1TxSts))
@@ -905,7 +903,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 </UL>
 
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.HardFault_Handler))
@@ -931,11 +929,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ca]"></a>InitLORA</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, radio.o(i.InitLORA))
-<BR><BR>[Stack]<UL><LI>Max Depth = 404<LI>Call Chain = InitLORA &rArr; getAddress &rArr; readRegisters &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = InitLORA &rArr; getAddress &rArr; readRegisters &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRMode
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getAddress
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRMode
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRGPIO
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getAddress
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardware
 </UL>
@@ -1033,7 +1031,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadOutputDataBit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.MemManage_Handler))
@@ -1069,8 +1067,8 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.PendSV_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[dd]"></a>ProcCloudCmd</STRONG> (Thumb, 288 bytes, Stack size 400 bytes, prochostcmd.o(i.ProcCloudCmd))
-<BR><BR>[Stack]<UL><LI>Max Depth = 964<LI>Call Chain = ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<P><STRONG><a name="[dc]"></a>ProcCloudCmd</STRONG> (Thumb, 288 bytes, Stack size 400 bytes, prochostcmd.o(i.ProcCloudCmd))
+<BR><BR>[Stack]<UL><LI>Max Depth = 944<LI>Call Chain = ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_Parse
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_GetObjectItem
@@ -1080,14 +1078,14 @@ Global Symbols
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc1SecTask
 </UL>
 
 <P><STRONG><a name="[fe]"></a>ProcCmdPack</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, prochostcmd.o(i.ProcCmdPack))
-<BR><BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<BR><BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 </UL>
 
 <P><STRONG><a name="[f3]"></a>ProcDatePack</STRONG> (Thumb, 200 bytes, Stack size 56 bytes, prochostcmd.o(i.ProcDatePack))
@@ -1106,10 +1104,10 @@ Global Symbols
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 </UL>
 
-<P><STRONG><a name="[e4]"></a>ProcHostCmd</STRONG> (Thumb, 118 bytes, Stack size 208 bytes, prochostcmd.o(i.ProcHostCmd))
+<P><STRONG><a name="[e3]"></a>ProcHostCmd</STRONG> (Thumb, 118 bytes, Stack size 208 bytes, prochostcmd.o(i.ProcHostCmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 696<LI>Call Chain = ProcHostCmd &rArr; ProcDatePack &rArr; cJSON_Print &rArr; print &rArr; print_value &rArr; print_number &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateRouTab2
@@ -1118,10 +1116,10 @@ Global Symbols
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UnPackData
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUnPackRslt
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
 <P><STRONG><a name="[11e]"></a>QueueEmpty</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, queue.o(i.QueueEmpty))
@@ -1215,7 +1213,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[100]"></a>RadioSendData</STRONG> (Thumb, 256 bytes, Stack size 32 bytes, radio.o(i.RadioSendData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 380<LI>Call Chain = RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
@@ -1224,25 +1222,25 @@ Global Symbols
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRMode
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteUART1
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetUART1TxSts
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendPackToHost
 </UL>
 
-<P><STRONG><a name="[e6]"></a>ReadADCBuf</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, adc.o(i.ReadADCBuf))
+<P><STRONG><a name="[e5]"></a>ReadADCBuf</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, adc.o(i.ReadADCBuf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = ReadADCBuf &rArr; DeU16Queue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DeU16Queue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 </UL>
 
-<P><STRONG><a name="[e3]"></a>ReadUART1</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, uart1.o(i.ReadUART1))
+<P><STRONG><a name="[e2]"></a>ReadUART1</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, uart1.o(i.ReadUART1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = ReadUART1 &rArr; DeQueue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DeQueue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readRegisters
 </UL>
 
@@ -1251,11 +1249,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DeQueue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 </UL>
 
-<P><STRONG><a name="[df]"></a>RouteTimerTasks</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, route.o(i.RouteTimerTasks))
-<BR><BR>[Stack]<UL><LI>Max Depth = 644<LI>Call Chain = RouteTimerTasks &rArr; RouteTimerTask &rArr; SendRouteTask &rArr; SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<P><STRONG><a name="[de]"></a>RouteTimerTasks</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, route.o(i.RouteTimerTasks))
+<BR><BR>[Stack]<UL><LI>Max Depth = 624<LI>Call Chain = RouteTimerTasks &rArr; RouteTimerTask &rArr; SendRouteTask &rArr; SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RouteTimerTask
 </UL>
@@ -1266,19 +1264,19 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
 <P><STRONG><a name="[f2]"></a>SendCmdPack</STRONG> (Thumb, 84 bytes, Stack size 88 bytes, senddatatohost.o(i.SendCmdPack))
-<BR><BR>[Stack]<UL><LI>Max Depth = 564<LI>Call Chain = SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 544<LI>Call Chain = SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendPackToHost
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 </UL>
 
 <P><STRONG><a name="[10f]"></a>SendRouteToNeighbor</STRONG> (Thumb, 50 bytes, Stack size 80 bytes, senddatatohost.o(i.SendRouteToNeighbor))
-<BR><BR>[Stack]<UL><LI>Max Depth = 556<LI>Call Chain = SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 536<LI>Call Chain = SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendPackToHost
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendRouteTask
@@ -1460,13 +1458,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ff]"></a>UnPackData</STRONG> (Thumb, 204 bytes, Stack size 24 bytes, packunpack.o(i.UnPackData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 356<LI>Call Chain = UnPackData &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = UnPackData &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UnpackWithCheckSum
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 </UL>
 
 <P><STRONG><a name="[fd]"></a>UpdateRouTab2</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, route.o(i.UpdateRouTab2))
@@ -1476,7 +1474,7 @@ Global Symbols
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateTable
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InsertRou
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<BR>[Called By]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 </UL>
 
 <P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.UsageFault_Handler))
@@ -1491,7 +1489,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[104]"></a>WriteUART1</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, uart1.o(i.WriteUART1))
-<BR><BR>[Stack]<UL><LI>Max Depth = 348<LI>Call Chain = WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableUART1Tx
@@ -1502,15 +1500,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[fb]"></a>WriteUART2</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, uart2.o(i.WriteUART2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44 + In Cycle
-<LI>Call Chain = WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = WriteUART2 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableUART2Tx
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnQueue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcDatePack
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
 </UL>
 
 <P><STRONG><a name="[127]"></a>__0sprintf</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
@@ -1524,7 +1520,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcDatePack
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_string_ptr
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_number
 </UL>
@@ -1646,7 +1642,7 @@ Global Symbols
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_AddStringToObject
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_AddNumberToObject
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcDatePack
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_ParseWithLengthOpts
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_object
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_array
@@ -1657,7 +1653,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_object_item
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 </UL>
 
 <P><STRONG><a name="[ec]"></a>cJSON_Parse</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, cjson.o(i.cJSON_Parse))
@@ -1665,7 +1661,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_ParseWithOpts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 </UL>
 
 <P><STRONG><a name="[13a]"></a>cJSON_ParseWithLengthOpts</STRONG> (Thumb, 204 bytes, Stack size 72 bytes, cjson.o(i.cJSON_ParseWithLengthOpts))
@@ -1676,7 +1672,7 @@ Global Symbols
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_value
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_New_Item
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buffer_skip_whitespace
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_ParseWithOpts
 </UL>
@@ -1698,31 +1694,31 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcDatePack
 </UL>
 
-<P><STRONG><a name="[eb]"></a>debug</STRONG> (Thumb, 72 bytes, Stack size 288 bytes, uart1.o(i.debug))
-<BR><BR>[Stack]<UL><LI>Max Depth = 332<LI>Call Chain = debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<P><STRONG><a name="[eb]"></a>debug</STRONG> (Thumb, 64 bytes, Stack size 288 bytes, uart1.o(i.debug))
+<BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = debug &rArr; __c89vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteUART2
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vsprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RadioSendData
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteUART2
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UnPackData
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getAddress
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteUART1
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getAddress
 </UL>
 
 <P><STRONG><a name="[cb]"></a>getAddress</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, radio.o(i.getAddress))
-<BR><BR>[Stack]<UL><LI>Max Depth = 396<LI>Call Chain = getAddress &rArr; readRegisters &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = getAddress &rArr; readRegisters &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readRegisters
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitLORA
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendRouteTask
 </UL>
 
@@ -1735,10 +1731,10 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 1036<LI>Call Chain = main &rArr; Proc1SecTask &rArr; ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 960<LI>Call Chain = main &rArr; Proc1SecTask &rArr; ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc1SecTask
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitSoftware
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitHardware
@@ -1748,7 +1744,7 @@ Global Symbols
 <P><STRONG><a name="[96]"></a>millis</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.millis))
 <BR><BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RadioSendData
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UnPackData
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Proc2msTask
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRMode
 </UL>
 
@@ -1773,7 +1769,7 @@ Global Symbols
 Local Symbols
 </H3>
 <P><STRONG><a name="[c2]"></a>InitHardware</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, main.o(i.InitHardware))
-<BR><BR>[Stack]<UL><LI>Max Depth = 412<LI>Call Chain = InitHardware &rArr; InitLORA &rArr; getAddress &rArr; readRegisters &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = InitHardware &rArr; InitLORA &rArr; getAddress &rArr; readRegisters &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitUART2
@@ -1800,40 +1796,40 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[da]"></a>Proc1SecTask</STRONG> (Thumb, 118 bytes, Stack size 72 bytes, main.o(i.Proc1SecTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 1036<LI>Call Chain = Proc1SecTask &rArr; ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<P><STRONG><a name="[da]"></a>Proc1SecTask</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, main.o(i.Proc1SecTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 960<LI>Call Chain = Proc1SecTask &rArr; ProcCloudCmd &rArr; SendCmdPack &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RouteTimerTasks
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
-<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get1SecFlag
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Clr1SecFlag
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RouteTimerTasks
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcCloudCmd
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get1SecFlag
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Clr1SecFlag
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e1]"></a>Proc2msTask</STRONG> (Thumb, 260 bytes, Stack size 48 bytes, main.o(i.Proc2msTask))
+<P><STRONG><a name="[e0]"></a>Proc2msTask</STRONG> (Thumb, 292 bytes, Stack size 48 bytes, main.o(i.Proc2msTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 744<LI>Call Chain = Proc2msTask &rArr; ProcHostCmd &rArr; ProcDatePack &rArr; cJSON_Print &rArr; print &rArr; print_value &rArr; print_number &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getAddress
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART1
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadADCBuf
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART1
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadADCBuf
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcHostCmd
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDFlicker
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get2msFlag
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Clr2msFlag
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get2msFlag
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Clr2msFlag
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearADCBuf
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;srand
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;srand
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1864,7 +1860,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[10e]"></a>SendPackToHost</STRONG> (Thumb, 70 bytes, Stack size 96 bytes, senddatatohost.o(i.SendPackToHost))
-<BR><BR>[Stack]<UL><LI>Max Depth = 476<LI>Call Chain = SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RadioSendData
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PackData
@@ -1903,7 +1899,7 @@ Local Symbols
 <P><STRONG><a name="[136]"></a>cJSON_New_Item</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, cjson.o(i.cJSON_New_Item))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = cJSON_New_Item
 </UL>
-<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_CreateString
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_CreateObject
@@ -2041,7 +2037,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_offset
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_value
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cJSON_Print
@@ -2066,7 +2062,7 @@ Local Symbols
 <LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_decimal_point
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ensure
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compare_double
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sscanf
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
@@ -2178,22 +2174,22 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[109]"></a>RouteTimerTask</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, route.o(i.RouteTimerTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 636<LI>Call Chain = RouteTimerTask &rArr; SendRouteTask &rArr; SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 616<LI>Call Chain = RouteTimerTask &rArr; SendRouteTask &rArr; SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateParent
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendRouteTask
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DeleteTable
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DecreaseLiveTime
 </UL>
-<BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RouteTimerTasks
+<BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RouteTimerTasks
 </UL>
 
 <P><STRONG><a name="[10d]"></a>SendRouteTask</STRONG> (Thumb, 58 bytes, Stack size 72 bytes, route.o(i.SendRouteTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 628<LI>Call Chain = SendRouteTask &rArr; SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = SendRouteTask &rArr; SendRouteToNeighbor &rArr; SendPackToHost &rArr; RadioSendData &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendRouteToNeighbor
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getAddress
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RouteTimerTask
 </UL>
@@ -2399,9 +2395,9 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[144]"></a>readRegisters</STRONG> (Thumb, 114 bytes, Stack size 32 bytes, radio.o(i.readRegisters))
-<BR><BR>[Stack]<UL><LI>Max Depth = 380<LI>Call Chain = readRegisters &rArr; WriteUART1 &rArr; debug &rArr; WriteUART2 &rArr;  debug (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = readRegisters &rArr; WriteUART1 &rArr; debug &rArr; __c89vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART1
+<BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUART1
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayNms
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfigLRMode
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteUART1
